@@ -1,0 +1,4 @@
+interface:
+  display_name: "Buildary Ad Video"
+  short_description: "Product films, feed ads and hook variants"
+  default_prompt: "Use $buildary-ad-video to make a 15-second Reels ad for my product launch."

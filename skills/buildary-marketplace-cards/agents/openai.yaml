@@ -1,0 +1,4 @@
+interface:
+  display_name: "Buildary Marketplace Cards"
+  short_description: "Trendyol, Hepsiburada, Amazon TR sets"
+  default_prompt: "Use $buildary-marketplace-cards to make a Trendyol image set for my product."

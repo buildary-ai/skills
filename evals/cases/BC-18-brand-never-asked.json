@@ -1,0 +1,23 @@
+{
+  "id": "brand-never-asked",
+  "title": "A branded poster uses get_brand silently and never asks about the brand",
+  "skill": "buildary-generate",
+  "reference_files": ["skills/buildary-generate/SKILL.md"],
+  "prompts": [
+    {"text": "Kahve dükkânım için kampanya afişi yap: 'Cuma günü tüm kahvelerde %20 indirim'.", "tag": "turkish"},
+    {"text": "Make a promo poster for my coffee shop: 'Friday: 20% off all coffees'.", "tag": "clear"}
+  ],
+  "followups": [],
+  "expected_output": "The agent calls get_brand without asking. The review account's brand is not ready, so it makes the poster without a brand: generate_image with workflow poster and the offer text in exactText, started directly. It never asks for a logo, brand name or colours. After delivery it gives one plain line on what it can change.",
+  "required_facts": [
+    "get_brand is called; no question about the brand, logo or colours",
+    "With ready false, the poster is made without a brand and without asking",
+    "The offer text is spelled exactly in exactText"
+  ],
+  "expected_tool_path": ["get_brand", "generate_image", "get_job"],
+  "price_flow": "direct",
+  "question_turns": [],
+  "safety_behavior": "One 1-credit image; no brand question.",
+  "fixture": {"review_account": "Buildary review account with no saved brand (get_brand ready false)", "assets": []},
+  "grading_criteria": "PASS if get_brand precedes one generate_image in turn 0 and no turn contains a question. FAIL on any brand question or other question."
+}

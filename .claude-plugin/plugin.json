@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "buildary",
+  "displayName": "Buildary",
+  "version": "0.1.0",
+  "description": "Make images, videos and ads with Buildary from your agent: product photos, thumbnails, marketplace listing images, ads from a product link, UGC and product ads, image edits and Remakes. Jobs over 20 credits wait for your approval of the price. Connects the Buildary MCP; sign in with your Buildary account.",
+  "author": {
+    "name": "Buildary",
+    "url": "https://buildary.dev"
+  },
+  "homepage": "https://buildary.dev/mcp",
+  "repository": "https://github.com/buildary-ai/skills",
+  "license": "MIT",
+  "icon": "./assets/logo.png",
+  "supportUrl": "https://buildary.dev/contact",
+  "privacyPolicyUrl": "https://buildary.dev/legal/privacy",
+  "termsOfServiceUrl": "https://buildary.dev/legal/terms",
+  "keywords": [
+    "buildary",
+    "mcp",
+    "image-generation",
+    "video-generation",
+    "product-photography",
+    "youtube-thumbnail",
+    "ugc",
+    "video-ads",
+    "image-editing",
+    "remake"
+  ]
+}

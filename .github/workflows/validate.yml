@@ -1,0 +1,52 @@
+# Adapted from higgsfield-ai/skills .github/workflows/validate-skills.yml and OpenArt-AI/skills
+# .github/workflows/validate.yml (both MIT; see THIRD_PARTY_NOTICES.md).
+name: Validate
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Skills, manifests, evals and host validators
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # Validator versions are pinned so a release upstream cannot change the verdict without a commit here.
+      - name: Install Python validators
+        run: pip install --quiet pyyaml==6.0.2 skills-ref==0.1.1
+
+      - name: Skills (frontmatter, line limit, references, attribution, tool contract)
+        run: python3 scripts/check_skills.py
+
+      - name: Agent Skills reference validator
+        run: for skill in skills/*/; do agentskills validate "$skill"; done
+
+      - name: Manifests agree on name, version, description and MCP URL
+        run: python3 scripts/check_manifests.py
+
+      - name: Eval cases and grader
+        run: |
+          python3 evals/grade.py --lint
+          python3 evals/grade.py --selftest
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Claude Code plugin validation
+        run: |
+          npm install --global @anthropic-ai/claude-code@2.1.325
+          claude plugin validate --strict .
+
+      - name: skills.sh discovery
+        run: npx --yes skills@1.8.1 add . --list

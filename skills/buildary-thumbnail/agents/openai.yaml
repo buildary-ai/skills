@@ -1,0 +1,4 @@
+interface:
+  display_name: "Buildary Thumbnail"
+  short_description: "Truthful, high-impact video thumbnails"
+  default_prompt: "Use $buildary-thumbnail to create a 16:9 YouTube thumbnail for my video."

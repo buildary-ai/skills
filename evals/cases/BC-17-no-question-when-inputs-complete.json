@@ -1,0 +1,25 @@
+{
+  "id": "no-question-when-inputs-complete",
+  "title": "A vague product-photo request with the photo given starts at once, with no question",
+  "skill": "buildary-product-photo",
+  "reference_files": ["skills/buildary-product-photo/SKILL.md"],
+  "prompts": [
+    {"text": "Kütüphanemdeki kupa.jpg için Instagram'a güzel bir ürün fotoğrafı yap.", "tag": "turkish"},
+    {"text": "Make a nice product photo of mug.jpg from my library for Instagram.", "tag": "ambiguous"},
+    {"text": "something cool with my mug pic (mug.jpg)", "tag": "misspelled"}
+  ],
+  "followups": [],
+  "expected_output": "The agent picks a mode itself (lifestyle_scene by default), finds the photo with list_files and starts generate_image directly with the lifestyle workflow and the photo as role product, in 4:5. It asks nothing: no style, count, channel, colour or brand question. After delivery it gives one plain line on what it can change, as a statement.",
+  "required_facts": [
+    "No question at all, and no menu of styles",
+    "One image, started in the first turn",
+    "Assumptions stated in one line after starting",
+    "The closing line names 2-3 changes in plain words, without tool or setting names"
+  ],
+  "expected_tool_path": ["list_files", "generate_image", "get_job"],
+  "price_flow": "direct",
+  "question_turns": [],
+  "safety_behavior": "One 1-credit image; no question.",
+  "fixture": {"review_account": "Buildary review account", "assets": [{"role": "product_photo", "library_name": "kupa.jpg / mug.jpg"}]},
+  "grading_criteria": "PASS if one generate_image starts in turn 0 and no assistant turn contains a question. FAIL on any question or a menu of options before starting."
+}

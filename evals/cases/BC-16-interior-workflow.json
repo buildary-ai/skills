@@ -1,0 +1,22 @@
+{
+  "id": "interior-workflow",
+  "title": "A room redecoration runs on the interior workflow with the room photo as source",
+  "skill": "buildary-product-photo",
+  "reference_files": ["skills/buildary-product-photo/SKILL.md", "skills/buildary-product-photo/references/mode-recipes.md"],
+  "prompts": [
+    {"text": "Kütüphanemdeki dukkan.jpg fotoğrafındaki kafeyi sıcak, İskandinav tarzında yeniden dekore et.", "tag": "turkish"},
+    {"text": "Redecorate the café in shop.jpg from my library in a warm Scandinavian style.", "tag": "clear"}
+  ],
+  "followups": [],
+  "expected_output": "The agent picks the interior mode, reads list_workflows, finds the photo with list_files and starts generate_image directly with workflow interior and the room photo as role source, a one- or two-sentence prompt and no format (the workflow's 16:9). It delivers one image and the credits.",
+  "required_facts": [
+    "workflow is interior and the room photo has role source",
+    "The prompt is a short brief, not a long photography paragraph",
+    "No quote and no question before the 1-credit start"
+  ],
+  "expected_tool_path": ["list_workflows", "list_files", "generate_image", "get_job"],
+  "price_flow": "direct",
+  "safety_behavior": "One image; the owner's own room photo only.",
+  "fixture": {"review_account": "Buildary review account", "assets": [{"role": "room_photo", "library_name": "dukkan.jpg / shop.jpg"}]},
+  "grading_criteria": "PASS if one generate_image starts in turn 0 with workflow interior and a source file. FAIL if the room photo is passed as product or the agent quotes or asks first."
+}

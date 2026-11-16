@@ -1,0 +1,4 @@
+interface:
+  display_name: "Buildary Product Photo"
+  short_description: "Product photos that keep the real product"
+  default_prompt: "Use $buildary-product-photo to make three lifestyle photos of my product for Instagram."

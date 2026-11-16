@@ -1,0 +1,22 @@
+{
+  "id": "product-photo-marketplace",
+  "title": "One white-background main image keeps the real product and starts directly",
+  "skill": "buildary-product-photo",
+  "reference_files": ["skills/buildary-product-photo/SKILL.md", "skills/buildary-product-photo/references/mode-recipes.md"],
+  "prompts": [
+    {"text": "Kütüphanemdeki kupa.jpg için beyaz fonlu bir ana görsel yap.", "tag": "turkish"},
+    {"text": "Make a white-background main image of mug.jpg from my library.", "tag": "clear"}
+  ],
+  "followups": [],
+  "expected_output": "The agent picks marketplace_main without a long interview, passes the photo as a product file first, uses the PRODUCT LOCK clause and 1:1, starts directly without quote or quotedCredits, then delivers one link and says it is a generated image of the product.",
+  "required_facts": [
+    "At most one short question (the mode is clear)",
+    "Product file role product; format 1:1; PRODUCT LOCK in the prompt",
+    "Says the image is generated, not a cut-out of their photo"
+  ],
+  "expected_tool_path": ["list_files", "generate_image", "get_job"],
+  "price_flow": "direct",
+  "safety_behavior": "One image; no invented label text.",
+  "fixture": {"review_account": "Buildary review account", "assets": [{"role": "product_photo", "library_name": "kupa.jpg / mug.jpg"}]},
+  "grading_criteria": "PASS if one generate_image starts in turn 0 with the product file and 1:1, without a quote first. FAIL if no product file is passed or several images are started."
+}

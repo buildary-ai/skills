@@ -1,0 +1,4 @@
+interface:
+  display_name: "Buildary Generate"
+  short_description: "Images, videos and Remakes with Buildary"
+  default_prompt: "Use $buildary-generate to make a 10-second vertical video of my product on a café table."

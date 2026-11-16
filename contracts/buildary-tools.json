@@ -1,0 +1,1316 @@
+{
+  "source": "https://buildary.dev/api/agency/mcp",
+  "tools": [
+    {
+      "name": "cancel_job",
+      "annotations": {
+        "title": "Stop a job that has not started",
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "jobId": {
+            "type": "string",
+            "format": "uuid",
+            "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+          }
+        },
+        "required": [
+          "jobId"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "complete_upload",
+      "annotations": {
+        "title": "Finish a file upload",
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "uploadId": {
+            "type": "string",
+            "format": "uuid",
+            "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+          }
+        },
+        "required": [
+          "uploadId"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "create_upload",
+      "annotations": {
+        "title": "Start a file upload",
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": false
+      },
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "size": {
+            "type": "integer",
+            "exclusiveMinimum": 0,
+            "maximum": 52428800
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "mimeType": {
+            "type": "string",
+            "enum": [
+              "video/mp4",
+              "video/quicktime",
+              "audio/mpeg",
+              "audio/wav",
+              "image/jpeg",
+              "image/png",
+              "image/webp",
+              "image/heic",
+              "image/heif",
+              "image/bmp",
+              "image/tiff",
+              "image/gif"
+            ]
+          },
+          "filename": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          }
+        },
+        "required": [
+          "size",
+          "sha256",
+          "mimeType",
+          "filename"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "generate_film",
+      "annotations": {
+        "title": "Make a film (several scenes, with music)",
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "prompt": {
+            "type": "string",
+            "minLength": 3
+          },
+          "durationSeconds": {
+            "default": 5,
+            "type": "number",
+            "enum": [
+              5,
+              10,
+              15
+            ]
+          },
+          "format": {
+            "default": "9:16",
+            "type": "string",
+            "enum": [
+              "9:16",
+              "16:9",
+              "1:1",
+              "4:5"
+            ]
+          },
+          "sound": {
+            "default": true,
+            "type": "boolean"
+          },
+          "exactText": {
+            "default": [],
+            "maxItems": 12,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 180
+            }
+          },
+          "files": {
+            "default": [],
+            "maxItems": 8,
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "fileId": {
+                  "type": "string",
+                  "format": "uuid",
+                  "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+                },
+                "role": {
+                  "type": "string",
+                  "enum": [
+                    "product",
+                    "character",
+                    "style",
+                    "logo",
+                    "reference_video"
+                  ]
+                }
+              },
+              "required": [
+                "fileId",
+                "role"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "workflow": {
+            "type": "string",
+            "enum": [
+              "cinema",
+              "product-film"
+            ]
+          },
+          "look": {
+            "type": "string",
+            "enum": [
+              "directed",
+              "editorial",
+              "analog",
+              "minimal",
+              "bold",
+              "surreal"
+            ]
+          },
+          "light": {
+            "type": "string",
+            "enum": [
+              "directed",
+              "daylight",
+              "studio",
+              "dramatic",
+              "golden",
+              "neon"
+            ]
+          },
+          "lens": {
+            "type": "string",
+            "enum": [
+              "directed",
+              "wide",
+              "natural",
+              "portrait",
+              "macro"
+            ]
+          },
+          "movement": {
+            "type": "string",
+            "enum": [
+              "directed",
+              "locked",
+              "push",
+              "orbit",
+              "tracking"
+            ]
+          },
+          "quotedCredits": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1000000
+          },
+          "requestId": {
+            "type": "string",
+            "format": "uuid",
+            "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+          }
+        },
+        "required": [
+          "prompt",
+          "requestId"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "generate_image",
+      "annotations": {
+        "title": "Generate an image",
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "prompt": {
+            "type": "string",
+            "minLength": 3
+          },
+          "format": {
+            "type": "string",
+            "enum": [
+              "1:1",
+              "4:5",
+              "9:16",
+              "16:9"
+            ]
+          },
+          "exactText": {
+            "default": [],
+            "maxItems": 12,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 180
+            }
+          },
+          "files": {
+            "default": [],
+            "maxItems": 8,
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "fileId": {
+                  "type": "string",
+                  "format": "uuid",
+                  "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+                },
+                "role": {
+                  "type": "string",
+                  "enum": [
+                    "product",
+                    "character",
+                    "style",
+                    "logo",
+                    "source"
+                  ]
+                }
+              },
+              "required": [
+                "fileId",
+                "role"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "model": {
+            "type": "string",
+            "enum": [
+              "sunburst-25",
+              "flare-25",
+              "sunburst-26",
+              "flare-26",
+              "gpt-image-2",
+              "nano-banana-21",
+              "nano-banana-2",
+              "nano-banana-2-lite",
+              "seedream-55"
+            ]
+          },
+          "resolution": {
+            "type": "string",
+            "enum": [
+              "1K",
+              "1.5K",
+              "2K",
+              "4K"
+            ]
+          },
+          "quality": {
+            "type": "string",
+            "enum": [
+              "low",
+              "medium",
+              "high",
+              "xhigh",
+              "max"
+            ]
+          },
+          "workflow": {
+            "type": "string",
+            "enum": [
+              "product",
+              "lifestyle",
+              "macro",
+              "conceptual",
+              "portrait",
+              "food",
+              "interior",
+              "poster",
+              "cover",
+              "illustration"
+            ]
+          },
+          "look": {
+            "type": "string",
+            "enum": [
+              "directed",
+              "editorial",
+              "analog",
+              "minimal",
+              "bold",
+              "surreal"
+            ]
+          },
+          "light": {
+            "type": "string",
+            "enum": [
+              "directed",
+              "daylight",
+              "studio",
+              "dramatic",
+              "golden",
+              "neon"
+            ]
+          },
+          "lens": {
+            "type": "string",
+            "enum": [
+              "directed",
+              "wide",
+              "natural",
+              "portrait",
+              "macro"
+            ]
+          },
+          "quotedCredits": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1000000
+          },
+          "requestId": {
+            "type": "string",
+            "format": "uuid",
+            "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+          }
+        },
+        "required": [
+          "prompt",
+          "requestId"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "generate_video",
+      "annotations": {
+        "title": "Generate a video",
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "model": {
+            "default": "omni",
+            "type": "string",
+            "enum": [
+              "omni",
+              "pixverse",
+              "seedance-fast",
+              "seedance-mini",
+              "seedance-20",
+              "seedance-25",
+              "wan-30",
+              "wan-prime",
+              "flux-3",
+              "grok-lite",
+              "veo-31",
+              "veo-fast",
+              "veo-lite",
+              "kling-30",
+              "kling-40",
+              "kling-40-flash",
+              "h3",
+              "h3-lite",
+              "h3-highspeed",
+              "h3-max",
+              "happyhorse",
+              "heygen",
+              "grok-15"
+            ]
+          },
+          "prompt": {
+            "type": "string",
+            "minLength": 3
+          },
+          "durationSeconds": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 30
+          },
+          "resolution": {
+            "type": "string",
+            "maxLength": 8
+          },
+          "format": {
+            "default": "9:16",
+            "type": "string",
+            "enum": [
+              "16:9",
+              "9:16",
+              "1:1"
+            ]
+          },
+          "sound": {
+            "type": "boolean"
+          },
+          "files": {
+            "default": [],
+            "maxItems": 50,
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "fileId": {
+                  "type": "string",
+                  "format": "uuid",
+                  "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+                },
+                "role": {
+                  "type": "string",
+                  "enum": [
+                    "start_frame",
+                    "end_frame",
+                    "reference_image",
+                    "reference_video",
+                    "audio"
+                  ]
+                }
+              },
+              "required": [
+                "fileId",
+                "role"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "quotedCredits": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1000000
+          },
+          "requestId": {
+            "type": "string",
+            "format": "uuid",
+            "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+          }
+        },
+        "required": [
+          "prompt",
+          "durationSeconds",
+          "requestId"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "get_account",
+      "annotations": {
+        "title": "Balance and running jobs",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "get_brand",
+      "annotations": {
+        "title": "Get the owner's brand",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "get_job",
+      "annotations": {
+        "title": "Check a job",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "jobId": {
+            "type": "string",
+            "format": "uuid",
+            "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+          }
+        },
+        "required": [
+          "jobId"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "import_from_url",
+      "annotations": {
+        "title": "Import an image from a link",
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": true
+      },
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "maxLength": 4000,
+            "format": "uri"
+          }
+        },
+        "required": [
+          "url"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "list_files",
+      "annotations": {
+        "title": "List library files",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "kind": {
+            "default": "all",
+            "type": "string",
+            "enum": [
+              "all",
+              "image",
+              "video",
+              "audio"
+            ]
+          },
+          "cursor": {
+            "type": "string",
+            "maxLength": 512
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "list_jobs",
+      "annotations": {
+        "title": "List jobs",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "limit": {
+            "default": 10,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 20
+          },
+          "jobIds": {
+            "minItems": 1,
+            "maxItems": 20,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid",
+              "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "list_models",
+      "annotations": {
+        "title": "List models and prices",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "model": {
+            "type": "string",
+            "enum": [
+              "omni",
+              "pixverse",
+              "seedance-fast",
+              "seedance-mini",
+              "seedance-20",
+              "seedance-25",
+              "wan-30",
+              "wan-prime",
+              "flux-3",
+              "grok-lite",
+              "veo-31",
+              "veo-fast",
+              "veo-lite",
+              "kling-30",
+              "kling-40",
+              "kling-40-flash",
+              "h3",
+              "h3-lite",
+              "h3-highspeed",
+              "h3-max",
+              "happyhorse",
+              "heygen",
+              "grok-15",
+              "sunburst-25",
+              "flare-25",
+              "sunburst-26",
+              "flare-26",
+              "gpt-image-2",
+              "nano-banana-21",
+              "nano-banana-2",
+              "nano-banana-2-lite",
+              "seedream-55"
+            ]
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "list_workflows",
+      "annotations": {
+        "title": "List workflows",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "image",
+              "video"
+            ]
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "quote",
+      "annotations": {
+        "title": "Get the credit price",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "video": {
+            "type": "object",
+            "properties": {
+              "model": {
+                "default": "omni",
+                "type": "string",
+                "enum": [
+                  "omni",
+                  "pixverse",
+                  "seedance-fast",
+                  "seedance-mini",
+                  "seedance-20",
+                  "seedance-25",
+                  "wan-30",
+                  "wan-prime",
+                  "flux-3",
+                  "grok-lite",
+                  "veo-31",
+                  "veo-fast",
+                  "veo-lite",
+                  "kling-30",
+                  "kling-40",
+                  "kling-40-flash",
+                  "h3",
+                  "h3-lite",
+                  "h3-highspeed",
+                  "h3-max",
+                  "happyhorse",
+                  "heygen",
+                  "grok-15"
+                ]
+              },
+              "prompt": {
+                "type": "string",
+                "minLength": 3
+              },
+              "durationSeconds": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 30
+              },
+              "resolution": {
+                "type": "string",
+                "maxLength": 8
+              },
+              "format": {
+                "default": "9:16",
+                "type": "string",
+                "enum": [
+                  "16:9",
+                  "9:16",
+                  "1:1"
+                ]
+              },
+              "sound": {
+                "type": "boolean"
+              },
+              "files": {
+                "default": [],
+                "maxItems": 50,
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "fileId": {
+                      "type": "string",
+                      "format": "uuid",
+                      "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+                    },
+                    "role": {
+                      "type": "string",
+                      "enum": [
+                        "start_frame",
+                        "end_frame",
+                        "reference_image",
+                        "reference_video",
+                        "audio"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "fileId",
+                    "role"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": [
+              "prompt",
+              "durationSeconds"
+            ],
+            "additionalProperties": false
+          },
+          "remake": {
+            "type": "object",
+            "properties": {
+              "sourceVideoFileId": {
+                "type": "string",
+                "format": "uuid",
+                "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+              },
+              "photoFileIds": {
+                "minItems": 1,
+                "maxItems": 8,
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "format": "uuid",
+                  "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+                }
+              },
+              "resolution": {
+                "default": "480p",
+                "type": "string",
+                "enum": [
+                  "480p",
+                  "720p",
+                  "1080p"
+                ]
+              },
+              "prompt": {
+                "default": "",
+                "type": "string",
+                "maxLength": 10000
+              }
+            },
+            "required": [
+              "sourceVideoFileId",
+              "photoFileIds"
+            ],
+            "additionalProperties": false
+          },
+          "image": {
+            "type": "object",
+            "properties": {
+              "prompt": {
+                "type": "string",
+                "minLength": 3
+              },
+              "format": {
+                "type": "string",
+                "enum": [
+                  "1:1",
+                  "4:5",
+                  "9:16",
+                  "16:9"
+                ]
+              },
+              "exactText": {
+                "default": [],
+                "maxItems": 12,
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 180
+                }
+              },
+              "files": {
+                "default": [],
+                "maxItems": 8,
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "fileId": {
+                      "type": "string",
+                      "format": "uuid",
+                      "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+                    },
+                    "role": {
+                      "type": "string",
+                      "enum": [
+                        "product",
+                        "character",
+                        "style",
+                        "logo",
+                        "source"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "fileId",
+                    "role"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "model": {
+                "type": "string",
+                "enum": [
+                  "sunburst-25",
+                  "flare-25",
+                  "sunburst-26",
+                  "flare-26",
+                  "gpt-image-2",
+                  "nano-banana-21",
+                  "nano-banana-2",
+                  "nano-banana-2-lite",
+                  "seedream-55"
+                ]
+              },
+              "resolution": {
+                "type": "string",
+                "enum": [
+                  "1K",
+                  "1.5K",
+                  "2K",
+                  "4K"
+                ]
+              },
+              "quality": {
+                "type": "string",
+                "enum": [
+                  "low",
+                  "medium",
+                  "high",
+                  "xhigh",
+                  "max"
+                ]
+              },
+              "workflow": {
+                "type": "string",
+                "enum": [
+                  "product",
+                  "lifestyle",
+                  "macro",
+                  "conceptual",
+                  "portrait",
+                  "food",
+                  "interior",
+                  "poster",
+                  "cover",
+                  "illustration"
+                ]
+              },
+              "look": {
+                "type": "string",
+                "enum": [
+                  "directed",
+                  "editorial",
+                  "analog",
+                  "minimal",
+                  "bold",
+                  "surreal"
+                ]
+              },
+              "light": {
+                "type": "string",
+                "enum": [
+                  "directed",
+                  "daylight",
+                  "studio",
+                  "dramatic",
+                  "golden",
+                  "neon"
+                ]
+              },
+              "lens": {
+                "type": "string",
+                "enum": [
+                  "directed",
+                  "wide",
+                  "natural",
+                  "portrait",
+                  "macro"
+                ]
+              }
+            },
+            "required": [
+              "prompt"
+            ],
+            "additionalProperties": false
+          },
+          "film": {
+            "type": "object",
+            "properties": {
+              "prompt": {
+                "type": "string",
+                "minLength": 3
+              },
+              "durationSeconds": {
+                "default": 5,
+                "type": "number",
+                "enum": [
+                  5,
+                  10,
+                  15
+                ]
+              },
+              "format": {
+                "default": "9:16",
+                "type": "string",
+                "enum": [
+                  "9:16",
+                  "16:9",
+                  "1:1",
+                  "4:5"
+                ]
+              },
+              "sound": {
+                "default": true,
+                "type": "boolean"
+              },
+              "exactText": {
+                "default": [],
+                "maxItems": 12,
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 180
+                }
+              },
+              "files": {
+                "default": [],
+                "maxItems": 8,
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "fileId": {
+                      "type": "string",
+                      "format": "uuid",
+                      "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+                    },
+                    "role": {
+                      "type": "string",
+                      "enum": [
+                        "product",
+                        "character",
+                        "style",
+                        "logo",
+                        "reference_video"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "fileId",
+                    "role"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "workflow": {
+                "type": "string",
+                "enum": [
+                  "cinema",
+                  "product-film"
+                ]
+              },
+              "look": {
+                "type": "string",
+                "enum": [
+                  "directed",
+                  "editorial",
+                  "analog",
+                  "minimal",
+                  "bold",
+                  "surreal"
+                ]
+              },
+              "light": {
+                "type": "string",
+                "enum": [
+                  "directed",
+                  "daylight",
+                  "studio",
+                  "dramatic",
+                  "golden",
+                  "neon"
+                ]
+              },
+              "lens": {
+                "type": "string",
+                "enum": [
+                  "directed",
+                  "wide",
+                  "natural",
+                  "portrait",
+                  "macro"
+                ]
+              },
+              "movement": {
+                "type": "string",
+                "enum": [
+                  "directed",
+                  "locked",
+                  "push",
+                  "orbit",
+                  "tracking"
+                ]
+              }
+            },
+            "required": [
+              "prompt"
+            ],
+            "additionalProperties": false
+          },
+          "revision": {
+            "type": "object",
+            "properties": {
+              "jobId": {
+                "type": "string",
+                "format": "uuid",
+                "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+              },
+              "instruction": {
+                "type": "string",
+                "minLength": 3
+              },
+              "regenerate": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "jobId",
+              "instruction"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "remake_video",
+      "annotations": {
+        "title": "Remake a video with new people or products",
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "sourceVideoFileId": {
+            "type": "string",
+            "format": "uuid",
+            "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+          },
+          "photoFileIds": {
+            "minItems": 1,
+            "maxItems": 8,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid",
+              "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+            }
+          },
+          "resolution": {
+            "default": "480p",
+            "type": "string",
+            "enum": [
+              "480p",
+              "720p",
+              "1080p"
+            ]
+          },
+          "prompt": {
+            "default": "",
+            "type": "string",
+            "maxLength": 10000
+          },
+          "quotedCredits": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1000000
+          },
+          "requestId": {
+            "type": "string",
+            "format": "uuid",
+            "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+          }
+        },
+        "required": [
+          "sourceVideoFileId",
+          "photoFileIds",
+          "requestId"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "revise_job",
+      "annotations": {
+        "title": "Make a new version of a job",
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "jobId": {
+            "type": "string",
+            "format": "uuid",
+            "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+          },
+          "instruction": {
+            "type": "string",
+            "minLength": 3
+          },
+          "regenerate": {
+            "type": "boolean"
+          },
+          "quotedCredits": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1000000
+          },
+          "requestId": {
+            "type": "string",
+            "format": "uuid",
+            "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+          }
+        },
+        "required": [
+          "jobId",
+          "instruction",
+          "requestId"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "show_results",
+      "annotations": {
+        "title": "Show results",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "jobIds": {
+            "minItems": 1,
+            "maxItems": 8,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid",
+              "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+            }
+          }
+        },
+        "required": [
+          "jobIds"
+        ],
+        "additionalProperties": false
+      }
+    }
+  ]
+}

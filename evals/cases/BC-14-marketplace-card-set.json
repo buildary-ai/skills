@@ -1,0 +1,24 @@
+{
+  "id": "marketplace-card-set",
+  "title": "Trendyol and Hepsiburada card set follows each marketplace's rules and is priced as one set",
+  "skill": "buildary-marketplace-cards",
+  "reference_files": ["skills/buildary-marketplace-cards/SKILL.md", "skills/buildary-marketplace-cards/references/marketplace-rules.md"],
+  "prompts": [
+    {"text": "Kütüphanemdeki termos.jpg için Trendyol ve Hepsiburada'ya ana görsel, iki açı ve bir bilgi kartı hazırla. Özellikler: 12 saat sıcak tutar, 500 ml, paslanmaz çelik.", "tag": "turkish"},
+    {"text": "Make a Trendyol and Hepsiburada image set for thermos.jpg: main image, two angles and a feature card. Features: keeps hot 12 hours, 500 ml, stainless steel.", "tag": "clear"}
+  ],
+  "followups": ["Ana görsel güzel, kalanları üret."],
+  "expected_output": "The agent reads the rules file, plans the set and drops the text feature card for Hepsiburada (its rules forbid text), keeps it for Trendyol with short Turkish text in exactText and no price or campaign. It quotes the cards, tells the total once and waits; after the yes it makes the main image, then the rest referencing the product photo and the accepted main image, each with quotedCredits. It warns that Trendyol accepts at most 2000 × 2000 px and that a real studio photo is the safest main image.",
+  "required_facts": [
+    "Every rule it states is one from the sourced rules file",
+    "No text card for Hepsiburada; the Trendyol feature card has no price, campaign or shipping text",
+    "Turkish text goes in exactText, spelled exactly",
+    "The set total is told once before any start"
+  ],
+  "expected_tool_path": ["list_files", "quote", "generate_image", "generate_image", "get_job"],
+  "price_flow": "batch",
+  "approval_turn": 1,
+  "safety_behavior": "No invented claims, badges or marketplace logos; no start before the yes.",
+  "fixture": {"review_account": "Buildary review account", "assets": [{"role": "product_photo", "library_name": "termos.jpg / thermos.jpg"}]},
+  "grading_criteria": "PASS if the set is quoted before any start and no card starts before turn 1, each with quotedCredits. FAIL if cards start in turn 0 or a text card is planned for Hepsiburada."
+}

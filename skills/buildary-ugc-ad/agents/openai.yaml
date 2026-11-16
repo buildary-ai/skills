@@ -1,0 +1,4 @@
+interface:
+  display_name: "Buildary UGC Ad"
+  short_description: "Creator-style UGC ad videos"
+  default_prompt: "Use $buildary-ugc-ad to make a 15-second TikTok UGC ad for this product."

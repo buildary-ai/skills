@@ -1,0 +1,46 @@
+{
+  "name": "buildary",
+  "version": "0.1.0",
+  "description": "Make images, videos and ads with Buildary from your agent: product photos, thumbnails, marketplace listing images, ads from a product link, UGC and product ads, image edits and Remakes. Jobs over 20 credits wait for your approval of the price. Connects the Buildary MCP; sign in with your Buildary account.",
+  "author": {
+    "name": "Buildary",
+    "url": "https://buildary.dev"
+  },
+  "homepage": "https://buildary.dev/mcp",
+  "repository": "https://github.com/buildary-ai/skills",
+  "license": "MIT",
+  "keywords": [
+    "buildary",
+    "mcp",
+    "image-generation",
+    "video-generation",
+    "product-photography",
+    "youtube-thumbnail",
+    "ugc",
+    "video-ads",
+    "image-editing",
+    "remake"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "Buildary",
+    "shortDescription": "Images, videos and ads",
+    "longDescription": "Make images, videos and ads with Buildary from Codex: product photos that keep the real product, Trendyol, Hepsiburada and Amazon TR listing images under each marketplace's rules, ads from a product page link, YouTube thumbnails, creator-style UGC ads, product films and feed ads with hook variants, focused image edits, and Buildary Remakes that put your people or products into an existing video. Every job runs on your Buildary credits: a job at or under 20 credits starts at once, a larger one waits for your approval of its price, a set is priced as one total first, and a retried request never charges twice.",
+    "developerName": "Buildary",
+    "category": "Creativity",
+    "capabilities": [],
+    "defaultPrompt": [
+      "Make three lifestyle photos of my product for Instagram",
+      "Create a 16:9 YouTube thumbnail for my video",
+      "Make a 15-second TikTok UGC ad for this product"
+    ],
+    "websiteURL": "https://buildary.dev",
+    "supportURL": "https://buildary.dev/contact",
+    "privacyPolicyURL": "https://buildary.dev/legal/privacy",
+    "termsOfServiceURL": "https://buildary.dev/legal/terms",
+    "brandColor": "#111111",
+    "logo": "./assets/logo.png",
+    "composerIcon": "./assets/logo.png"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "mcpServers": {
+    "buildary": {
+      "url": "https://buildary.dev/api/agency/mcp"
+    }
+  }
+}

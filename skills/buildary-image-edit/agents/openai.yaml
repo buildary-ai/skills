@@ -1,0 +1,4 @@
+interface:
+  display_name: "Buildary Image Edit"
+  short_description: "Change one thing, keep the rest"
+  default_prompt: "Use $buildary-image-edit to change only the background of this photo."

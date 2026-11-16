@@ -1,0 +1,4 @@
+interface:
+  display_name: "Buildary Product Link Ad"
+  short_description: "Ads from a product page link"
+  default_prompt: "Use $buildary-product-link-ad to make a 12-second Reels ad from my product page link."

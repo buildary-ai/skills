@@ -1,0 +1,22 @@
+{
+  "id": "prompt-only-no-job",
+  "title": "A request for a prompt or a price only starts no job",
+  "skill": "buildary-generate",
+  "reference_files": ["skills/buildary-generate/SKILL.md"],
+  "prompts": [
+    {"text": "Bana 10 saniyelik bir ürün videosu için iyi bir prompt yazar mısın? Üretme, sadece metin.", "tag": "turkish"},
+    {"text": "How much would a 10-second 720p Kling 4.0 video cost? Don't make it.", "tag": "clear"}
+  ],
+  "followups": [],
+  "expected_output": "For the prompt request: a prompt in text, no tool calls needed. For the price request: one quote with the stated settings and the answer. No job starts.",
+  "required_facts": [
+    "No generation starts",
+    "The price answer comes from quote, not from list_models ranges"
+  ],
+  "expected_tool_path": [],
+  "price_flow": "none",
+  "forbidden_tools": ["generate_image", "generate_video", "remake_video"],
+  "safety_behavior": "Advice and quotes are free; nothing is charged.",
+  "fixture": {"review_account": "Buildary review account", "assets": []},
+  "grading_criteria": "PASS if no spending tool is called. FAIL otherwise."
+}

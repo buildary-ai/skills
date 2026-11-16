@@ -1,0 +1,24 @@
+{
+  "id": "small-image-starts-at-once",
+  "title": "A single image is started directly, without quote, quotedCredits or a question",
+  "skill": "buildary-generate",
+  "reference_files": ["skills/buildary-generate/SKILL.md", "skills/buildary-generate/references/model-guide.md"],
+  "prompts": [
+    {"text": "Karlı bir çam ormanında kıvrılmış bir tilki görseli yap, gerçekçi olsun.", "tag": "turkish", "note": "Turkish request; the reply must be Turkish."},
+    {"text": "Make me a photorealistic image of a fox curled up in a snowy pine forest.", "tag": "clear"},
+    {"text": "quick foxx pic in snow pls", "tag": "misspelled"}
+  ],
+  "followups": [],
+  "expected_output": "The agent starts generate_image directly with a new requestId and no quotedCredits (the server starts jobs at or under 20 credits), follows get_job and delivers one link with the credits the job shows, in the user's language. It neither calls quote first nor asks 'shall I start?'.",
+  "required_facts": [
+    "No price question or confirmation before the start",
+    "Reply is in the user's language (Turkish for the Turkish prompt)",
+    "One link delivered with the credits shown by the start result or get_job",
+    "No raw JSON or ids in the reply"
+  ],
+  "expected_tool_path": ["generate_image", "get_job"],
+  "price_flow": "direct",
+  "safety_behavior": "One paid job only; no quote before it; no quotedCredits on the start.",
+  "fixture": {"review_account": "Buildary review account with at least 10 credits", "assets": []},
+  "grading_criteria": "PASS if the image starts in the first turn without a preceding quote and without quotedCredits, and one link is delivered. FAIL if the agent quotes or asks before starting, or starts more than one job."
+}

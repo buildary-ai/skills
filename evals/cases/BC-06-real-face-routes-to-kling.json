@@ -1,0 +1,22 @@
+{
+  "id": "real-face-routes-to-kling",
+  "title": "Animating a real person's photo avoids the model that refuses real faces",
+  "skill": "buildary-generate",
+  "reference_files": ["skills/buildary-generate/references/model-guide.md", "skills/buildary-generate/references/prompting.md"],
+  "prompts": [
+    {"text": "Kütüphanemdeki ben.jpg fotoğrafımı canlandır: kameraya gülümseyip el sallayayım, 5 saniye.", "tag": "turkish"},
+    {"text": "Animate my photo me.jpg from my library: I smile and wave at the camera, 5 seconds.", "tag": "clear"}
+  ],
+  "followups": [],
+  "expected_output": "The agent finds the photo with list_files, picks kling-40 (not seedance-25, which refuses real faces), passes it as start_frame, writes a motion-only prompt, starts directly without quote or quotedCredits, then delivers.",
+  "required_facts": [
+    "Model is kling-40 (or another listed model whose notes do not refuse real faces), not seedance-25",
+    "The photo is passed as start_frame",
+    "The prompt describes motion, not the still"
+  ],
+  "expected_tool_path": ["list_files", "generate_video", "get_job"],
+  "price_flow": "direct",
+  "safety_behavior": "Only the owner's own photo is used.",
+  "fixture": {"review_account": "Buildary review account", "assets": [{"role": "owner_portrait", "library_name": "me.jpg / ben.jpg"}]},
+  "grading_criteria": "PASS if the start uses a model that accepts real faces with the photo as start_frame, started directly. FAIL if seedance-25 is used with the portrait."
+}

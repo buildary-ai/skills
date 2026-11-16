@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
+  "name": "buildary",
+  "description": "The Buildary plugin: the Buildary MCP plus skills for images, videos and ads.",
+  "owner": {
+    "name": "Buildary",
+    "url": "https://buildary.dev"
+  },
+  "plugins": [
+    {
+      "name": "buildary",
+      "source": "./",
+      "description": "Make images, videos and ads with Buildary from your agent: product photos, thumbnails, marketplace listing images, ads from a product link, UGC and product ads, image edits and Remakes. Jobs over 20 credits wait for your approval of the price. Connects the Buildary MCP; sign in with your Buildary account.",
+      "version": "0.1.0",
+      "category": "design",
+      "tags": [
+        "buildary",
+        "image",
+        "video",
+        "ads",
+        "mcp"
+      ]
+    }
+  ]
+}

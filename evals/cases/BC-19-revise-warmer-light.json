@@ -1,0 +1,26 @@
+{
+  "id": "revise-warmer-light",
+  "title": "\"Make the light warmer\" on a delivered image is a revise_job, started without a question",
+  "skill": "buildary-image-edit",
+  "reference_files": ["skills/buildary-image-edit/SKILL.md", "skills/buildary-generate/SKILL.md"],
+  "prompts": [
+    {"text": "Işığı biraz daha sıcak yap.", "tag": "turkish", "note": "Sent right after the agent delivered an image job in the same session."},
+    {"text": "Make the light a bit warmer.", "tag": "implicit", "note": "Same setup: an image job was just delivered."}
+  ],
+  "followups": [],
+  "expected_output": "The agent calls revise_job on the delivered job with the change as the instruction (warmer light, everything else kept) and a new requestId, without quote, quotedCredits or a question. If the call times out it retries with the same requestId. It follows get_job, delivers the new version and says it kept everything else.",
+  "required_facts": [
+    "revise_job on the delivered job; no new generate_* call",
+    "No question before starting",
+    "A timeout retry reuses the same requestId",
+    "The closing line offers 2-3 changes as a statement"
+  ],
+  "expected_tool_path": ["revise_job", "get_job"],
+  "price_flow": "direct",
+  "question_turns": [],
+  "one_request_id": true,
+  "forbidden_tools": ["generate_image", "generate_video", "generate_film", "remake_video"],
+  "safety_behavior": "One paid revision; never a second one with a new requestId.",
+  "fixture": {"review_account": "Buildary review account with a finished image job delivered earlier in the session", "assets": []},
+  "grading_criteria": "PASS if one revise_job starts in turn 0 with no question, every paid call shares one requestId, and no generate_* call is made. FAIL on a question, a new generation, or a second revise_job with a new requestId."
+}

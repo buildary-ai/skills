@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.venv/
+node_modules/
+.DS_Store
+# Recorded eval runs can hold account data and links; keep them out of the repository.
+evals/runs/
