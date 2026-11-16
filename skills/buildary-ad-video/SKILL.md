@@ -13,7 +13,7 @@ description: >-
   into an existing video (buildary-generate, Remake), or editing the owner's footage.
 license: MIT
 metadata:
-  version: "0.1.0"
+  version: "0.2.0"
 ---
 
 # Buildary Ad Video

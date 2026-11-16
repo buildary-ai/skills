@@ -1,8 +1,8 @@
 {
   "name": "buildary",
   "displayName": "Buildary",
-  "version": "0.1.0",
-  "description": "Make images, videos and ads with Buildary from your agent: product photos, thumbnails, marketplace listing images, ads from a product link, UGC and product ads, image edits and Remakes. Jobs over 20 credits wait for your approval of the price. Connects the Buildary MCP; sign in with your Buildary account.",
+  "version": "0.2.0",
+  "description": "Make images, videos, ads and websites with Buildary from your agent: product photos, thumbnails, marketplace listing images, ads from a product link, UGC and product ads, image edits, Remakes, and websites built, changed and published on your request. Jobs over 20 credits wait for your approval of the price; website work starts only after you agree. Connects the Buildary MCP; sign in with your Buildary account.",
   "author": {
     "name": "Buildary"
   },
@@ -21,7 +21,8 @@
     "ugc",
     "video-ads",
     "image-editing",
-    "remake"
+    "remake",
+    "website-builder"
   ],
   "skills": "./skills/",
   "mcpServers": "./.cursor-plugin/mcp.json"

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Buildary Website"
+  short_description: "Build, change and publish sites"
+  default_prompt: "Use $buildary-website to build a website for my café with the menu PDF in my Buildary library."

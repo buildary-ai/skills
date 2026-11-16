@@ -11,7 +11,7 @@ description: >-
   thumbnails (buildary-thumbnail), or uploading images to the marketplace itself.
 license: MIT
 metadata:
-  version: "0.1.0"
+  version: "0.2.0"
 ---
 
 # Buildary Marketplace Cards

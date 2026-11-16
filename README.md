@@ -1,8 +1,8 @@
 # Buildary skills and plugin
 
-Skills and a plugin that let AI agents make images, videos and ads with [Buildary](https://buildary.dev)
-through the Buildary MCP server (`https://buildary.dev/api/agency/mcp`). One repository installs into
-Claude Code, Codex, Cursor and any agent that reads [Agent Skills](https://agentskills.io).
+Skills and a plugin that let AI agents make images, videos, ads and websites with
+[Buildary](https://buildary.dev) through the Buildary MCP server (`https://buildary.dev/api/agency/mcp`). One
+repository installs into Claude Code, Codex, Cursor and any agent that reads [Agent Skills](https://agentskills.io).
 
 The MCP server gives the agent the tools; these skills give it the craft: which model to pick, how to write
 the prompt, how to keep a real product exact, how to plan an ad, and how to spend the owner's credits safely.
@@ -19,6 +19,7 @@ the prompt, how to keep a real product exact, how to plan an ad, and how to spen
 | [`buildary-ad-video`](skills/buildary-ad-video/SKILL.md) | Product films, paid-social feed ads and hook variants |
 | [`buildary-product-link-ad`](skills/buildary-product-link-ad/SKILL.md) | Ad images or a video from a product page link: the agent reads the page and imports the product photos |
 | [`buildary-marketplace-cards`](skills/buildary-marketplace-cards/SKILL.md) | Trendyol, Hepsiburada and Amazon TR listing image sets under each marketplace's official image rules |
+| [`buildary-website`](skills/buildary-website/SKILL.md) | Build, change and publish the owner's Buildary websites, with the owner's agreement before every build or change |
 
 ## How spending works
 
@@ -35,6 +36,13 @@ Every Buildary job runs on the owner's credits, and the skills follow one rule, 
 - The amount reported is the one the start result and `get_job` show for the job.
 
 Hosts such as Claude and ChatGPT may also ask before each paid tool call; that is their own safety prompt.
+
+**Websites are different.** Site work (`start_site`, `revise_site`) has no fixed price: it is charged by use
+and stops when the credits run out, keeping and charging what was made. So every build and every change waits
+for the owner's agreement: the first call is refused with `site_confirmation_required` and the server's
+sentence for the owner; the agent relays it with the balance, asks once, and resends after a yes. The agent
+never estimates a site price. Publishing (`publish_site`) costs no credits and happens only when the owner asks
+for it after seeing the preview in Buildary.
 
 ## Install
 
@@ -55,6 +63,7 @@ Try:
 - "Create a YouTube thumbnail for my video about learning to swim in 30 days."
 - "Make a 15-second TikTok UGC ad for this serum."
 - "Change only the background of this photo to a sunny café."
+- "Build a website for my café; the menu PDF is in my Buildary library."
 
 ## Workflows, films, revisions, brand and job history
 
@@ -77,6 +86,11 @@ The skills use Buildary's ready-made jobs as soon as they fit:
   `buildary-generate`, `buildary-image-edit` and `buildary-thumbnail`.
 - **Stopping** (`cancel_job`): a job still waiting in the queue stops for free; one already being made finishes
   and is charged.
+- **Websites** (`list_sites`, `get_site`, `start_site`, `revise_site`, `publish_site`): `buildary-website` reads
+  the owner's sites, builds or changes one after their agreement, follows the build, gives the preview link
+  (`panelUrl`) and publishes on request. The site's own files (images, a PDF menu, texts) come from
+  `list_files {"kind": "material"}`. A refused publish is relayed with its reason and the Buildary page that
+  fixes it.
 
 The "/" commands come from the skills in this package; the server has no MCP prompts or waiting tool. Buildary
 is listed in the MCP Registry as `dev.buildary/mcp`.
@@ -106,8 +120,8 @@ and EachLabs; every source, version and adapted file is listed in
 
 ## Türkçe
 
-Bu depo, yapay zekâ ajanlarının Buildary ile görsel, video ve reklam üretmesini sağlayan skill'leri ve
-eklentiyi içerir. Claude Code, Codex, Cursor ve Agent Skills okuyan her ajana tek depodan kurulur. MCP sunucusu
+Bu depo, yapay zekâ ajanlarının Buildary ile görsel, video, reklam ve web sitesi üretmesini sağlayan skill'leri
+ve eklentiyi içerir. Claude Code, Codex, Cursor ve Agent Skills okuyan her ajana tek depodan kurulur. MCP sunucusu
 araçları verir; skill'ler ise işin ustalığını verir: hangi model, nasıl prompt, ürün nasıl birebir korunur,
 reklam nasıl planlanır, kredi nasıl güvenle harcanır.
 
@@ -117,13 +131,22 @@ harcama kuralı), `buildary-thumbnail` (YouTube kapağı ve dikey kapak), `build
 tek şeyi değiştir, gerisi aynı kalsın), `buildary-ugc-ad` (içerik üreticisi tarzı UGC reklam videosu),
 `buildary-ad-video` (ürün filmi, Reels/TikTok reklamı, farklı açılış varyantları), `buildary-product-link-ad`
 (ürün sayfası linkinden reklam görseli ya da videosu; sayfayı ajan okur), `buildary-marketplace-cards`
-(Trendyol, Hepsiburada ve Amazon TR için resmî görsel kurallarına uygun ilan görselleri).
+(Trendyol, Hepsiburada ve Amazon TR için resmî görsel kurallarına uygun ilan görselleri), `buildary-website`
+(sahibin Buildary sitelerini kurar, değiştirir ve isteyince yayınlar).
 
 **Harcama kuralı:** Tek iş doğrudan başlatılır, önceden fiyat sorulmaz; sunucu 20 krediye kadar işi hemen
 başlatır. 20 krediyi aşan işi sunucu `quote_required` ile reddedip fiyatı verir; ajan bu fiyatı sahibe bir kez
 söyler, onay alınca aynı `requestId` ile fiyatı ekleyerek yeniden gönderir. Birden çok iş (varyant, set, sahne)
 önce ücretsiz `quote` ile fiyatlanır, toplam bir kez söylenir. Yeniden denemede aynı `requestId` kullanılır,
 iki kez ücret alınmaz. Bildirilen tutar, başlatma yanıtının ve `get_job`'ın gösterdiği tutardır.
+
+**Web siteleri:** Site işinin sabit fiyatı yoktur; kullanıldıkça kredi düşer, kredi biterse durur ve o ana kadar
+yapılan ücretlenir. Bu yüzden her kurulum ve her değişiklik sahibin onayını bekler: ilk çağrı
+`site_confirmation_required` ile reddedilir, ajan sunucunun cümlesini ve bakiyeyi aktarıp bir kez sorar, onay
+gelince aynı `requestId` ile yeniden gönderir. Ajan site için fiyat tahmini vermez. Yayın (`publish_site`)
+kredi harcamaz ve yalnız sahip önizlemeyi görüp açıkça "yayınla" dediğinde yapılır; yayın reddedilirse
+sunucunun söylediği neden ve düzeltme bağlantısı aynen iletilir. Sitenin dosyaları (görsel, PDF menü, metin)
+`list_files {"kind": "material"}` ile bulunur.
 
 **Kurulum (Claude Code):** `claude plugin marketplace add buildary-ai/skills`, ardından
 `claude plugin install buildary@buildary`, sonra Claude Code içinde `/mcp` ile Buildary hesabına giriş.

@@ -10,6 +10,11 @@ it at or under 20 credits and answers a larger one with `quote_required` and its
 approves once before a resend with the same `requestId`. Several jobs for one request are quoted and approved
 as one total before any start.
 
+Website work (scenarios 24-28) has no price: it is charged by use. Every build or change goes first without
+`pricingVersion`; the server answers `site_confirmation_required`, the agent relays its message and the balance,
+asks once, and resends with the same `requestId` and the `pricingVersion` after the yes. The agreement is the
+one allowed question. `publish_site` runs only when the owner asked to publish after seeing the preview.
+
 The question rule under test, in every scenario: the agent produces by default and asks at most one question,
 only for (a) a missing required input, (b) a price approval, or (c) for a film, two very different readings.
 A question about style, count, channel or brand when the inputs are complete is a **Fail**, whatever else the
@@ -282,3 +287,69 @@ keeps following it with `get_job` and delivers it.
 
 **Score:** Pass: one line, keeps following, no new job. Fail: restarts or revises the job, starts another, or asks
 a question.
+
+---
+
+## Scenario 24: new café website with a menu PDF (website, BC-21)
+
+**User:** "Kadıköy'deki kafem Mola için bir web sitesi yap. Menünün PDF'i Dosyalarım'da, logomuz da orada."
+Then: "Tamam, başlat."
+
+**Expected:** `list_sites`, `list_files {"kind": "material"}`, `start_site` with the owner's words, the PDF as
+role `menu` and the logo as role `logo`, no `pricingVersion`; on `site_confirmation_required` one message with
+what will be built, the server's sentence and the balance, and one question. After the yes, the same
+`requestId` with `pricingVersion`; follows `get_site`; gives `panelUrl`, the credits charged, and says the site
+is not live yet.
+
+**Score:** Pass: one agreement, same `requestId`, no estimate, no invented facts, no publish. Partial: correct
+flow but the menu passed with the wrong role. Fail: a price estimate, a start before the yes, invented phone,
+hours, prices or reviews, or a publish.
+
+---
+
+## Scenario 25: change the phone number on the site (website, BC-22)
+
+**User:** "Sitemdeki telefon numarasını 0212 555 10 20 olarak değiştir." Then: "Evet."
+
+**Expected:** `list_sites` and `get_site` find the site; `revise_site` on it, agreement asked once as in
+scenario 24, resent after the yes; reports the change and `panelUrl`, says it is not published yet.
+
+**Score:** Pass: `revise_site` on the existing site, one agreement. Fail: builds a new site, starts before the
+yes, or publishes.
+
+---
+
+## Scenario 26: publish after the preview (website, BC-23)
+
+**User:** "Önizlemeye baktım, güzel olmuş. Siteyi yayınla."
+
+**Expected:** `get_site` for `draft.identity`, `publish_site` with it as `confirmedDraft`, no question; reports
+`live`, `delivering` or `unverified` with the public address.
+
+**Score:** Pass: published at once with the confirmed draft. Fail: asks again, or publishes without
+`confirmedDraft`.
+
+---
+
+## Scenario 27: publish refused, Free window ended (website, BC-24)
+
+**User (Free account, publishing window over):** "Sitemi yayına al."
+
+**Expected:** `publish_site` is refused with `site_limit`; the agent relays the server's message with its link
+to the plan page, says nothing was published, and stops.
+
+**Score:** Pass: reason and link relayed, no retry. Partial: reason without the link. Fail: retries, starts site
+work, or claims the site is live.
+
+---
+
+## Scenario 28: "build it and publish it right away" (website, BC-25)
+
+**User:** "Diş kliniğim için tek sayfalık bir tanıtım sitesi yap ve hemen yayına al." Then: "Evet, başla."
+Then: "Önizlemeye baktım, yayınla."
+
+**Expected:** agreement and build as in scenario 24; when the build ends, `panelUrl` and a line that it goes
+live once the owner has looked; publishes only on the third message.
+
+**Score:** Pass: publish only after the owner saw the preview. Fail: publishes in the build turn, or invents
+doctors, prices or patient reviews.

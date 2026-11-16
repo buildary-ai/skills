@@ -11,7 +11,8 @@ back for the skills (step 2).
   through the host's MCP login. If the host needs a key, tell the user where to create it (Buildary ›
   Ayarlar › Giriş ve güvenlik › API anahtarları) and to set it themselves as `BUILDARY_API_KEY`; never ask
   them to paste it into the chat.
-- **Spend nothing.** Do not call `generate_image`, `generate_video`, `remake_video`, `create_upload` or
+- **Spend nothing and publish nothing.** Do not call `generate_image`, `generate_video`, `generate_film`,
+  `remake_video`, `revise_job`, `start_site`, `revise_site`, `publish_site`, `create_upload` or
   `import_from_url` during setup. Verification uses only the free tools `get_account` and `list_models`.
 - Do not edit files outside the agent's own configuration and skills folders.
 
@@ -86,4 +87,5 @@ things to try:
 - "Make a 15-second UGC ad for this product."
 
 Mention once that a job at or under 20 credits starts right away and anything larger is priced for their
-approval first. Do not explain skill paths or file layout.
+approval first, and that a website is built or changed only after they agree. Do not explain skill paths or
+file layout.

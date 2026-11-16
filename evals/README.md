@@ -11,7 +11,7 @@ Two layers, adapted from higgsfield-ai/skills (`evals/scenarios.md`, hand-scored
 
 | File | What | Run by |
 |---|---|---|
-| [`scenarios.md`](scenarios.md) | 23 user requests with expected behaviour and a pass / partial / fail rubric | A person (or an agent playing the user) in a fresh session |
+| [`scenarios.md`](scenarios.md) | 28 user requests with expected behaviour and a pass / partial / fail rubric | A person (or an agent playing the user) in a fresh session |
 | `cases/BC-*.json` | The money-relevant scenarios as specs: prompts in English, Turkish and misspelled forms, follow-ups, the expected tool order and a price flow | `grade.py` |
 | [`grade.py`](grade.py) | Lints the cases and grades a recorded transcript deterministically | You and CI |
 
@@ -43,11 +43,14 @@ Real runs spend real Buildary credits. Use a review account with a small balance
 `grade.py` checks the side effects that cost money for each case's `price_flow`: a single job started directly
 without a `quote` or `quotedCredits` (`direct`); a job over 20 credits resent with `quotedCredits` only after the
 owner's yes and with its first `requestId` (`over_threshold`); a set quoted before any start and started only
-after the yes (`batch`); no paid start at all (`none`). It also checks a `requestId` on every start, no URL in any
-prompt, the same `requestId` on a retry, forbidden tools and the expected tool order. It prints the case's
-`required_facts` (language, wording, honesty) for a person or an LLM judge. Questions are graded too: a
-sentence ending in "?" outside the turns the case allows (`question_turns`; by default only the price turn),
-two questions in one turn, or any question about the brand fails the case.
+after the yes (`batch`); a website build or change sent first without `pricingVersion` and resent with it only
+after the owner's yes, same `requestId` (`site`); no paid start at all (`none`). `publish_site` is allowed only
+from the turn the owner asked to publish (`publish_turn`), after `get_site` and with `confirmedDraft`. It also
+checks a `requestId` on every start, no URL in any prompt, the same `requestId` on a retry, forbidden tools and
+the expected tool order. It prints the case's `required_facts` (language, wording, honesty) for a person or an
+LLM judge. Questions are graded too: a sentence ending in "?" outside the turns the case allows
+(`question_turns`; by default only the price or agreement turn), two questions in one turn, or any question
+about the brand fails the case.
 
 ## Recording a round
 

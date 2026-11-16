@@ -581,6 +581,30 @@
       }
     },
     {
+      "name": "get_site",
+      "annotations": {
+        "title": "Check a website",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "siteId": {
+            "type": "string",
+            "format": "uuid",
+            "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+          }
+        },
+        "required": [
+          "siteId"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
       "name": "import_from_url",
       "annotations": {
         "title": "Import an image from a link",
@@ -623,7 +647,8 @@
               "all",
               "image",
               "video",
-              "audio"
+              "audio",
+              "material"
             ]
           },
           "cursor": {
@@ -720,6 +745,21 @@
       }
     },
     {
+      "name": "list_sites",
+      "annotations": {
+        "title": "List the owner's websites",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      }
+    },
+    {
       "name": "list_workflows",
       "annotations": {
         "title": "List workflows",
@@ -739,6 +779,36 @@
             ]
           }
         },
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "publish_site",
+      "annotations": {
+        "title": "Publish a website",
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "siteId": {
+            "type": "string",
+            "format": "uuid",
+            "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+          },
+          "confirmedDraft": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 80
+          }
+        },
+        "required": [
+          "siteId",
+          "confirmedDraft"
+        ],
         "additionalProperties": false
       }
     },
@@ -1284,6 +1354,82 @@
       }
     },
     {
+      "name": "revise_site",
+      "annotations": {
+        "title": "Change a website",
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "siteId": {
+            "type": "string",
+            "format": "uuid",
+            "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+          },
+          "instruction": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 20000
+          },
+          "files": {
+            "default": [],
+            "maxItems": 10,
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "fileId": {
+                  "type": "string",
+                  "format": "uuid",
+                  "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+                },
+                "role": {
+                  "type": "string",
+                  "enum": [
+                    "logo",
+                    "product",
+                    "place",
+                    "menu",
+                    "gallery",
+                    "reference",
+                    "text"
+                  ]
+                },
+                "note": {
+                  "type": "string",
+                  "maxLength": 200
+                }
+              },
+              "required": [
+                "fileId",
+                "role"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "pricingVersion": {
+            "type": "string",
+            "maxLength": 40
+          },
+          "requestId": {
+            "type": "string",
+            "format": "uuid",
+            "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+          }
+        },
+        "required": [
+          "siteId",
+          "instruction",
+          "requestId"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
       "name": "show_results",
       "annotations": {
         "title": "Show results",
@@ -1308,6 +1454,85 @@
         },
         "required": [
           "jobIds"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "start_site",
+      "annotations": {
+        "title": "Build a new website",
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "prompt": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 20000
+          },
+          "tier": {
+            "type": "string",
+            "enum": [
+              "mini",
+              "standard",
+              "professional",
+              "maximum"
+            ]
+          },
+          "files": {
+            "default": [],
+            "maxItems": 10,
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "fileId": {
+                  "type": "string",
+                  "format": "uuid",
+                  "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+                },
+                "role": {
+                  "type": "string",
+                  "enum": [
+                    "logo",
+                    "product",
+                    "place",
+                    "menu",
+                    "gallery",
+                    "reference",
+                    "text"
+                  ]
+                },
+                "note": {
+                  "type": "string",
+                  "maxLength": 200
+                }
+              },
+              "required": [
+                "fileId",
+                "role"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "pricingVersion": {
+            "type": "string",
+            "maxLength": 40
+          },
+          "requestId": {
+            "type": "string",
+            "format": "uuid",
+            "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+          }
+        },
+        "required": [
+          "prompt",
+          "requestId"
         ],
         "additionalProperties": false
       }

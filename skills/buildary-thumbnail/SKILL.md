@@ -11,7 +11,7 @@ description: >-
   (buildary-product-photo), or editing an unrelated existing photo (buildary-image-edit).
 license: MIT
 metadata:
-  version: "0.1.0"
+  version: "0.2.0"
 ---
 
 # Buildary Thumbnail

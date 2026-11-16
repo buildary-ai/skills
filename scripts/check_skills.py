@@ -37,7 +37,9 @@ ATTRIBUTION = re.compile(r"\b(adapted|copied|condensed) from\b", re.IGNORECASE)
 RESULT_FIELDS = {"balanceCredits", "createdAt", "elapsedSeconds", "expiresInSeconds", "retryAfterSeconds",
                  "runningJobs", "maxRunningJobs", "nextCursor", "promptReferences", "promptReference",
                  "durationsSeconds", "defaultResolution", "defaultQuality", "startFrame", "endFrame",
-                 "creditsPerSecond", "firstSourceSeconds", "isError", "jobId", "requiredFile", "logoFileId"}
+                 "creditsPerSecond", "firstSourceSeconds", "isError", "jobId", "requiredFile", "logoFileId",
+                 "publishedUrl", "panelUrl", "previewReady", "lastBuild", "buildId", "waitingForOwner",
+                 "unpublishedChanges", "minStartCredits"}
 TOOL_VERBS = {"list", "get", "create", "complete", "import", "generate", "remake", "upload", "cancel", "wait",
               "start", "run", "delete", "update", "set"}
 MODEL_RE = re.compile(r"^(omni|pixverse|seedance|wan|flux|grok|veo|kling|h3|happyhorse|heygen|sunburst|flare|gpt-image"

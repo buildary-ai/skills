@@ -19,6 +19,7 @@ buildary-ugc-ad            self-contained; one complete generate_video with nati
 buildary-ad-video          self-contained; generate_film (cinema, product-film) or directed generate_video clips
 buildary-product-link-ad   self-contained; the agent reads the page, import_from_url, then image, film or video
 buildary-marketplace-cards self-contained; listing sets under sourced Trendyol, Hepsiburada, Amazon TR rules
+buildary-website           self-contained; list_sites/get_site, start_site and revise_site after agreement, publish_site
 ```
 
 ## The server is the contract
@@ -51,6 +52,22 @@ Each skill states them itself (skills install alone), in its own words but with 
 
 Changing any of these needs the founder's decision and a matching server change. Marketplace rules in
 `buildary-marketplace-cards` come only from the marketplaces' own seller documentation, each with its source.
+
+## Website rules (`buildary-website`)
+
+Site work has no price: it is charged by use until the work ends or the credits run out (ADR 382). So the money
+rules above do not apply to `start_site` and `revise_site`; instead (ADR 430):
+
+1. Every build or change goes first without `pricingVersion`; the server answers `site_confirmation_required`
+   with the owner's sentence, `minStartCredits` and the balance. The agent relays them and asks once; after a
+   yes it resends with the same `requestId` and that `pricingVersion`. Each new build or change asks again.
+2. Never quote or estimate a price for site work.
+3. `publish_site` only on the owner's explicit request after they saw the preview (`panelUrl`), with
+   `confirmedDraft` = `draft.identity` from `get_site`. A publish refusal's `message` (reason and fix link) is
+   relayed as it is.
+4. No business facts, prices or reviews the owner did not give.
+
+"Produce first" rule 2(b) covers the agreement question; it is the one question of a site build or change.
 
 ## Produce first: rules every skill carries
 

@@ -9,10 +9,11 @@ description: >-
   yap", "bu fotoğrafı canlandır", "bu videoya beni koy", "kaç kredi tutar", "bakiyem ne kadar". NOT for:
   thumbnails (buildary-thumbnail), product photo sets (buildary-product-photo), editing an existing image
   (buildary-image-edit), ads from a product link (buildary-product-link-ad), marketplace listing images
-  (buildary-marketplace-cards), UGC ads (buildary-ugc-ad), ad videos (buildary-ad-video).
+  (buildary-marketplace-cards), UGC ads (buildary-ugc-ad), ad videos (buildary-ad-video), websites
+  (buildary-website).
 license: MIT
 metadata:
-  version: "0.1.0"
+  version: "0.2.0"
 ---
 
 # Buildary Generate
@@ -98,7 +99,9 @@ Every start (`generate_image`, `generate_video`, `generate_film`, `remake_video`
    Change part of an existing image → `buildary-image-edit`. Ad from a product page link →
    `buildary-product-link-ad`. Trendyol, Hepsiburada or Amazon listing images → `buildary-marketplace-cards`.
    UGC ad → `buildary-ugc-ad`. Brand film, multi-scene film with music, paid-social ad or hook variants →
-   `buildary-ad-video`. Everything else stays here; a ready-made workflow may fit (see "Ready-made workflows").
+   `buildary-ad-video`. Build, change or publish a website → `buildary-website` (site work has its own
+   agreement rule, not the one below). Everything else stays here; a ready-made workflow may fit (see
+   "Ready-made workflows").
 2. **Pick the model** from the live catalog. Call `list_models` once per conversation, and
    `list_models {"model": "<name>"}` for the chosen model's full price rows and rules. Never invent a model
    name, duration, resolution or format: send only values the model lists. Defaults and per-model notes:

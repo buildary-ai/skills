@@ -8,12 +8,12 @@ description: >-
   "studio shot", "lifestyle image", "food photo", "redecorate my shop", "hero banner", "ad creative",
   "ürün fotoğrafı", "ürün çekimi", "beyaz fon", "yemek fotoğrafı", "mekân dekorasyonu",
   "detay çekimi", "mankene giydir", "kampanya görseli". NOT for: images with no product (buildary-generate),
-  Trendyol, Hepsiburada or Amazon TR listing sets (buildary-marketplace-cards), ads from a product page link
-  (buildary-product-link-ad), video thumbnails (buildary-thumbnail), changing one detail of an existing photo
-  (buildary-image-edit), or product videos and ads (buildary-ad-video, buildary-ugc-ad).
+  Trendyol, Hepsiburada or Amazon TR listing sets (buildary-marketplace-cards), ads from a product link
+  (buildary-product-link-ad), video thumbnails (buildary-thumbnail), editing one detail of a photo
+  (buildary-image-edit), videos (buildary-ad-video, buildary-ugc-ad), or websites (buildary-website).
 license: MIT
 metadata:
-  version: "0.1.0"
+  version: "0.2.0"
 ---
 
 # Buildary Product Photo
