@@ -3,15 +3,16 @@ name: buildary-image-edit
 description: >-
   Change part of an existing image with Buildary while keeping the rest: swap a background, change a colour,
   expression, outfit or held object, remove an object, restyle the season or light, fix a detail. A Buildary
-  result is retouched in place with revise_job; the owner's own photo is edited with a lock-first
-  generate_image prompt; then it checks what drifted. Use when: "change only X", "keep everything else the
+  result is retouched in place with revise_job; the owner's own photo or logo in the Buildary library is
+  edited with a lock-first generate_image prompt, which keeps text and shapes that a plain prompt redraws;
+  then it checks what drifted. Use when: "change only X", "keep everything else the
   same", "remove this", "replace that", "change the background", "make it green", "fix this image", "make it
   again", "sadece arka planı değiştir", "geri kalanı aynı kalsın", "şunu kaldır", "rengini değiştir", "bu
   görseli düzelt", "yeniden üret". NOT for: new images from scratch (buildary-generate), product photo sets
   (buildary-product-photo), thumbnail tweaks inside a thumbnail job (buildary-thumbnail), or editing videos.
 license: MIT
 metadata:
-  version: "0.2.1"
+  version: "0.2.2"
 ---
 
 # Buildary Image Edit

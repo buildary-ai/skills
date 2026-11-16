@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "buildary",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Make images, videos, ads and websites with Buildary from your agent: product photos, thumbnails, marketplace listing images, ads from a product link, UGC and product ads, image edits, Remakes, and websites built, changed and published on your request. Jobs over 20 credits wait for your approval of the price; website work starts only after you agree. Connects the Buildary MCP; sign in with your Buildary account.",
   "author": {
     "name": "Buildary",

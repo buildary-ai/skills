@@ -7,11 +7,11 @@
   ],
   "prompts": [
     {
-      "text": "Sitemi yayına al.",
+      "text": "Önizlemeye baktım, sitemi yayına al.",
       "tag": "turkish"
     },
     {
-      "text": "Put my site live.",
+      "text": "I checked the preview. Put my site live.",
       "tag": "explicit"
     }
   ],

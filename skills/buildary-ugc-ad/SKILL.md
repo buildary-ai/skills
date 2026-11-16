@@ -12,7 +12,7 @@ description: >-
   video (buildary-generate, Remake), or real customer testimonials.
 license: MIT
 metadata:
-  version: "0.2.1"
+  version: "0.2.2"
 ---
 
 # Buildary UGC Ad

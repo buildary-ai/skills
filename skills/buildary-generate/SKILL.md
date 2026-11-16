@@ -5,15 +5,15 @@ description: >-
   list_models, write the prompt, bring in files, start generate_image, generate_video or remake_video, follow
   get_job and deliver. Owns the spending rule: a single job starts directly, a quote_required answer over 20
   credits is approved once, several jobs are quoted as one total. Use when: "make an image", "make a video",
-  "animate this photo", "put me / my product into this video", "how many credits", "görsel üret", "video
-  yap", "bu fotoğrafı canlandır", "bu videoya beni koy", "kaç kredi tutar", "bakiyem ne kadar". NOT for:
-  thumbnails (buildary-thumbnail), product photo sets (buildary-product-photo), editing an existing image
-  (buildary-image-edit), ads from a product link (buildary-product-link-ad), marketplace listing images
+  "animate this photo", "animate my logo", "put me / my product into this video", "how many credits", "görsel
+  üret", "video yap", "bu fotoğrafı canlandır", "bu videoya beni koy", "kaç kredi tutar", "bakiyem ne kadar".
+  NOT for: thumbnails (buildary-thumbnail), product photo sets (buildary-product-photo), editing an existing
+  image (buildary-image-edit), ads from a product link (buildary-product-link-ad), marketplace listing images
   (buildary-marketplace-cards), UGC ads (buildary-ugc-ad), ad videos (buildary-ad-video), websites
   (buildary-website).
 license: MIT
 metadata:
-  version: "0.2.1"
+  version: "0.2.2"
 ---
 
 # Buildary Generate
@@ -169,7 +169,9 @@ movement) and `pricing`. Read it once when a request matches one of them.
   when the owner asks the price or several revisions are planned together.
 - **"Stop it":** `cancel_job {"jobId"}`. A job still waiting in the queue stops for free and its held credits are
   released. A job already being made answers `content_already_started`: it finishes and is charged; tell the
-  owner that in one line and keep following it. On a finished job it only returns the status.
+  owner that in one line and keep following it with `get_job` in the same reply until it is ready, then
+  deliver it. The owner is paying for it, and nothing checks the job between your replies, so "I'll bring it
+  when it's ready" without following it leaves them waiting. On a finished job it only returns the status.
 
 ## Remake
 

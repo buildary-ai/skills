@@ -1,19 +1,19 @@
 ---
 name: buildary-website
 description: >-
-  Build, change and publish the owner's Buildary websites through the Buildary MCP: list_sites and get_site
-  to read them, start_site for a new site, revise_site for a change, publish_site to put the draft live. Site
-  work is charged by use with no fixed price, so every build and change waits for the owner's agreement, and
-  publishing happens only when the owner asks for it. Use when: "build me a website", "make a landing page for
-  my business", "change my site", "add a menu page", "update the phone number on my site", "publish my site",
-  "is my site live?", "web sitesi yap", "işletmem için site kur", "açılış sayfası yap", "sitemi değiştir",
-  "sitedeki telefonu güncelle", "menüyü siteye ekle", "siteyi yayınla", "sitem yayında mı". NOT for: banner
-  or hero images for a page (buildary-product-photo), other images and videos (buildary-generate), ads
-  (buildary-ad-video, buildary-product-link-ad), or unpublishing, domains and answering the site author's
-  questions (the owner does those in Buildary).
+  Build, change and publish the owner's Buildary websites through the Buildary MCP (list_sites, get_site,
+  start_site, revise_site, publish_site). Site work is charged by use with no fixed price, so every build and
+  change waits for the owner's agreement. Publishing happens only on the owner's request, with its own draft
+  check and refusals to relay, so load this before publish_site too, even after the owner checked the
+  preview. Use when: "build me a website", "make a landing page for my business", "change my site", "update
+  the phone number on my site", "publish my site", "is my site live?", "web sitesi yap", "işletmem için site
+  kur", "sitemi değiştir", "sitedeki telefonu güncelle", "menüyü siteye ekle", "siteyi yayınla", "sitem
+  yayında mı". NOT for: banner or hero images for a page (buildary-product-photo), other images and videos
+  (buildary-generate), ads (buildary-ad-video, buildary-product-link-ad), or unpublishing, domains and
+  answering the site author's questions (the owner does those in Buildary).
 license: MIT
 metadata:
-  version: "0.2.1"
+  version: "0.2.2"
 ---
 
 # Buildary Website

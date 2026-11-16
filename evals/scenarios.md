@@ -332,7 +332,7 @@ yes, or publishes.
 
 ## Scenario 27: publish refused, Free window ended (website, BC-24)
 
-**User (Free account, publishing window over):** "Sitemi yayına al."
+**User (Free account, publishing window over, has seen the preview):** "Önizlemeye baktım, sitemi yayına al."
 
 **Expected:** `publish_site` is refused with `site_limit`; the agent relays the server's message with its link
 to the plan page, says nothing was published, and stops.

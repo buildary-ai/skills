@@ -14,7 +14,7 @@
     "The prompt is a short brief, not a long photography paragraph",
     "No quote and no question before the 1-credit start"
   ],
-  "expected_tool_path": ["list_workflows", "list_files", "generate_image", "get_job"],
+  "expected_tool_path": ["list_workflows", "generate_image", "get_job"],
   "price_flow": "direct",
   "safety_behavior": "One image; the owner's own room photo only.",
   "fixture": {"review_account": "Buildary review account", "assets": [{"role": "room_photo", "library_name": "dukkan.jpg / shop.jpg"}]},

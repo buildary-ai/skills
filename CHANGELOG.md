@@ -3,6 +3,14 @@
 Each release changes `VERSION` and the `version` in every plugin manifest and skill (`scripts/bump_version.py`
 writes them all). Claude Code and Codex update an installed plugin only when that number changes.
 
+## 0.2.2
+
+- Skills: product-link-ad writes the pre-publish checks as statements; ad-video reads the live workflow list
+  even when the owner's words match an example; generate follows a job whose stop was refused until it is
+  delivered and names logo animation; image-edit says why a library photo or logo is edited with a lock-first
+  prompt; the website description asks to load the skill before publishing.
+- Evals: BC-15/BC-16 no longer require list_files before list_workflows; BC-24 says the owner saw the preview.
+
 ## 0.2.1
 
 - Repository housekeeping.

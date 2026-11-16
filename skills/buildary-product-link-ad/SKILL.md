@@ -11,7 +11,7 @@ description: >-
   a brief (buildary-ugc-ad), or reading social-media video links (not supported).
 license: MIT
 metadata:
-  version: "0.2.1"
+  version: "0.2.2"
 ---
 
 # Buildary Product Link Ad
@@ -102,7 +102,9 @@ as files.
 
 Follow each job with `get_job`, waiting `retryAfterSeconds`; when it is ready, call `show_results` once with its `jobId`. If you can see the result, compare the product
 with the imported photos (shape, label, colour) and check every word of the copy. Deliver the link, the fact
-sheet the ad was built on, the credits for the job, and anything the owner should check before publishing.
+sheet the ad was built on, the credits for the job, and anything the owner should check before publishing,
+written as statements ("Check that the mug colour matches yours."): nothing waits on an answer, so do not
+phrase the checks as questions.
 End with one plain line on what you can change ("I can make it longer, change the mood or add a headline if
 you like."), with no tool or setting names.
 

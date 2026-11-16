@@ -13,7 +13,7 @@ description: >-
   into an existing video (buildary-generate, Remake), or editing the owner's footage.
 license: MIT
 metadata:
-  version: "0.2.1"
+  version: "0.2.2"
 ---
 
 # Buildary Ad Video
@@ -32,7 +32,9 @@ before the expensive renders.
 - Call `list_workflows {"kind": "video"}` once for the film workflows, their `requiredFile`, the `directions`
   (look, light, lens, movement) and `pricing.film`. For `generate_video`, call `list_models` once, then
   `list_models {"model": "<chosen>"}` for its durations, formats, files, notes and price rows. Never invent a
-  workflow, direction, model, duration or format.
+  workflow, direction, model, duration or format. The ids and prices written in this skill are examples
+  from one day; only the live lists say what the server accepts and charges today, so read them even when
+  the owner's words match an example.
 
 ## UX rules
 
