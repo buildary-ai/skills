@@ -13,7 +13,7 @@ description: >-
   (buildary-website).
 license: MIT
 metadata:
-  version: "0.2.2"
+  version: "0.2.3"
 ---
 
 # Buildary Generate
@@ -179,6 +179,11 @@ movement) and `pricing`. Read it once when a request matches one of them.
 into this video"). Only the first 19 seconds of a longer source are remade and priced. A `reference_video`
 in `generate_video` only guides camera, motion and pacing; it never edits that video. Inputs, pricing and
 prompts: `references/remake.md`.
+
+Swapping a real person in a video ("replace the man in this clip with me") is a Remake, not a Seedance edit:
+Seedance refuses photos and videos that show a real person's face, after it has already queued the job, so
+the attempt fails and retrying the same files fails again. If a Seedance job fails with input rejected,
+switch to `remake_video` (or `kling-40` for a new video of a real person) instead of retrying.
 
 ## Delivery from a sandbox
 

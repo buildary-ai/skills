@@ -12,7 +12,7 @@ description: >-
   (buildary-product-photo), thumbnail tweaks inside a thumbnail job (buildary-thumbnail), or editing videos.
 license: MIT
 metadata:
-  version: "0.2.2"
+  version: "0.2.3"
 ---
 
 # Buildary Image Edit

@@ -11,7 +11,7 @@ description: >-
   a brief (buildary-ugc-ad), or reading social-media video links (not supported).
 license: MIT
 metadata:
-  version: "0.2.2"
+  version: "0.2.3"
 ---
 
 # Buildary Product Link Ad

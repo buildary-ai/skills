@@ -13,7 +13,7 @@ description: >-
   (buildary-image-edit), videos (buildary-ad-video, buildary-ugc-ad), or websites (buildary-website).
 license: MIT
 metadata:
-  version: "0.2.2"
+  version: "0.2.3"
 ---
 
 # Buildary Product Photo

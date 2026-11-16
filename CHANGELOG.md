@@ -3,6 +3,10 @@
 Each release changes `VERSION` and the `version` in every plugin manifest and skill (`scripts/bump_version.py`
 writes them all). Claude Code and Codex update an installed plugin only when that number changes.
 
+## 0.2.3
+
+- Swapping a real person in a video goes to Remake; a Seedance job that fails with input rejected is not retried with the same files.
+
 ## 0.2.2
 
 - Skills: product-link-ad writes the pre-publish checks as statements; ad-video reads the live workflow list
