@@ -1,9 +1,5 @@
 # Text overlay & bake (HTML/CSS + canvas)
 
-Adapted from higgsfield-ai/skills `higgsfield-youtube-thumbnail/references/text-overlay-bake.md`
-(v0.14.0, commit 2700040), MIT License, Copyright (c) 2026 Higgsfield AI. Changes: Turkish casing and
-glyph checks. See `THIRD_PARTY_NOTICES.md` in this skill.
-
 How to lay a MrBeast-style headline over the image and "bake" it into a flat PNG.
 Two layers: (1) a **live HTML/CSS preview** to tune the text in a browser, (2) a
 **canvas bake** — the same look re-rendered to pixels at the image's native resolution.

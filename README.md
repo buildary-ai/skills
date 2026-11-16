@@ -114,9 +114,7 @@ Maintainers: read [.claude/CLAUDE.md](.claude/CLAUDE.md) before changing a skill
 
 ## Licence
 
-MIT, see [LICENSE](LICENSE). Some skills adapt MIT-licensed material from Higgsfield, OpenArt, Krea, Magnific
-and EachLabs; every source, version and adapted file is listed in
-[THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md), and each skill carries its own notice file.
+MIT, see [LICENSE](LICENSE).
 
 ## Türkçe
 

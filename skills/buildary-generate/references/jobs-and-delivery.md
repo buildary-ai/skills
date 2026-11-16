@@ -1,8 +1,5 @@
 # Jobs and delivery
 
-Progress-reporting and visual-QA rules adapted from krea-ai/skills (`krea-generate/references/progress-reporting.md`
-and `vision-qa.md`, MIT, Copyright (c) 2026 Krea AI). See `THIRD_PARTY_NOTICES.md` in this skill.
-
 ## Following a job
 
 A start returns a `jobId` at once. Call `get_job {"jobId"}` and wait `retryAfterSeconds` before the next call.

@@ -1,9 +1,5 @@
 # Writing the recommendation
 
-Condensed from OpenArt-AI/skills `skills/ugc/references/recommendation-writing.md`,
-`ad-structure-and-pacing.md` and `opening-hooks.md` (v0.3.0, commit 7e3e2a6), MIT License, Copyright (c)
-2026 OpenArt Inc. See `THIRD_PARTY_NOTICES.md` in this skill.
-
 The aim is useful, engaging advice from a particular person to a particular listener. Conversational wording
 cannot rescue a script with no reason to recommend the product.
 

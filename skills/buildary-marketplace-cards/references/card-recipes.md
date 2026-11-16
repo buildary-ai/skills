@@ -1,10 +1,5 @@
 # Card recipes
 
-Card taxonomy adapted from higgsfield-ai/skills `higgsfield-marketplace-cards` (v0.14.0, commit 2700040), MIT
-License, Copyright (c) 2026 Higgsfield AI; set workflow and failure terms adapted from krea-ai/skills
-`krea-marketing/references/marketplace-cards.md` (commit 9239bb4), MIT License, Copyright (c) 2026 Krea AI.
-See `THIRD_PARTY_NOTICES.md` in this skill.
-
 Write prompts in English. Every visible word is Turkish (or the listing's language) and goes in `exactText`,
 spelled exactly, including ç, ğ, ı, İ, ö, ş, ü. Check each card against `marketplace-rules.md` before you
 start it.

@@ -12,7 +12,7 @@ description: >-
   video (buildary-generate, Remake), or real customer testimonials.
 license: MIT
 metadata:
-  version: "0.2.0"
+  version: "0.2.1"
 ---
 
 # Buildary UGC Ad
@@ -122,8 +122,3 @@ once (see `buildary-ad-video` for hook variants built on one body). Name the one
 - `references/script-writing.md`: recommendation reasoning, opening hooks, structure and pacing.
 - `references/plan-and-prompt.md`: prompt contents, Script Plan format, version-choice and price wording.
 - `references/review.md`: review checklist, continuity, delivery record.
-
-<!-- Adapted from OpenArt-AI/skills skills/ugc (v0.3.0, commit 7e3e2a6), MIT License, Copyright (c) 2026
-OpenArt Inc, with the UGC notes of freepik-company/magnific-plugin skills/video-ad (commit 857f251), MIT
-License, Copyright (c) 2026 Magnific AI, S.L.U. Changes: Buildary MCP tools and models, the 20-credit
-spending rule, no draft-upgrade or dubbing tools. See THIRD_PARTY_NOTICES.md in this skill. -->

@@ -1,10 +1,5 @@
 # Creative direction for brand commercials
 
-Adapted from OpenArt-AI/skills `skills/tvc/references/creative-direction.md` (v0.3.0, commit 7e3e2a6), MIT
-License, Copyright (c) 2026 OpenArt Inc, and the shot-plan guidance of freepik-company/magnific-plugin
-`skills/video-ad` (commit 857f251), MIT License, Copyright (c) 2026 Magnific AI, S.L.U. See
-`THIRD_PARTY_NOTICES.md` in this skill.
-
 ## Start from one idea
 
 Name the impression the audience should keep and a product-specific reason for it. Choose a few visual

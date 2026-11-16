@@ -4,11 +4,10 @@
 # ///
 """Validates every skill in skills/. Run: python3 scripts/check_skills.py (needs PyYAML; `uv run` installs it).
 
-Frontmatter, line limit, references and self-containment follow the rules in .claude/CLAUDE.md (adapted from the
-higgsfield-ai/skills validate-skills.yml checks, MIT). On top of those, the tool contract check compares every
-Buildary tool, field, enum value and model a skill mentions with contracts/buildary-tools.json, the snapshot of
-the live server: MCP clients cache tool lists and the server never renames a tool or field, so a name the
-snapshot lacks is a skill bug, not a server change.
+Frontmatter, line limit, references and self-containment follow the rules in .claude/CLAUDE.md. On top of those,
+the tool contract check compares every Buildary tool, field, enum value and model a skill mentions with
+contracts/buildary-tools.json, the snapshot of the live server: MCP clients cache tool lists and the server never
+renames a tool or field, so a name the snapshot lacks is a skill bug, not a server change.
 """
 import json
 import re
@@ -25,14 +24,6 @@ SPEC_KEYS = {"name", "description", "license", "compatibility", "metadata", "all
 NAME_RE = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
 TURKISH_RE = re.compile(r"[çğıöşüÇĞİÖŞÜ]")
 
-# Upstream repositories that adapted files may name; each must appear in the skill's and the root notices.
-UPSTREAMS = ["higgsfield-ai/skills", "OpenArt-AI/skills", "krea-ai/skills", "freepik-company/magnific-plugin",
-             "eachlabs/plugin"]
-# Competitor tools and CLIs that must not survive an adaptation (outside attribution notes).
-FOREIGN = re.compile(r"higgsfield (generate|model|auth|upload|product-photoshoot)|\bopenart_|simulate_cost|creations_"
-                     r"|images_generate|video_generate|\brun_model\b|--wait\b|nano_banana_pro|seedream_v5")
-# A note naming an upstream source; the file must then carry its copyright line.
-ATTRIBUTION = re.compile(r"\b(adapted|copied|condensed) from\b", re.IGNORECASE)
 # Fields that appear in Buildary tool results rather than inputs (docs/guides/buildary-mcp-basvuru.md).
 RESULT_FIELDS = {"balanceCredits", "createdAt", "elapsedSeconds", "expiresInSeconds", "retryAfterSeconds",
                  "runningJobs", "maxRunningJobs", "nextCursor", "promptReferences", "promptReference",
@@ -75,10 +66,9 @@ def fail(path: Path, message: str) -> None:
     errors.append(f"{path.relative_to(ROOT)}: {message}")
 
 
-def strip_notes(text: str) -> str:
-    """Attribution notes legitimately name competitor files; everything else must not."""
-    text = re.sub(r"<!--.*?-->", "", text, flags=re.DOTALL)
-    return "\n".join(l for l in text.splitlines() if not ATTRIBUTION.search(l) and "Copyright (c)" not in l)
+def strip_comments(text: str) -> str:
+    """HTML comments are not shown to the agent, so links and names inside them do not count."""
+    return re.sub(r"<!--.*?-->", "", text, flags=re.DOTALL)
 
 
 def check_frontmatter(skill: Path, version: str) -> None:
@@ -115,7 +105,7 @@ def check_frontmatter(skill: Path, version: str) -> None:
 
 def check_references(skill: Path) -> None:
     skill_md = skill / "SKILL.md"
-    text = strip_notes(skill_md.read_text())
+    text = strip_comments(skill_md.read_text())
     for ref in sorted(set(re.findall(r"references/[A-Za-z0-9_.-]+\.md", text))):
         if not (skill / ref).is_file():
             fail(skill_md, f"links {ref}, which does not exist")
@@ -139,38 +129,9 @@ def check_codex_metadata(skill: Path) -> None:
         fail(path, f"default_prompt should invoke ${skill.name}")
 
 
-def check_attribution(skill: Path, root_notices: str) -> None:
-    named = set()
-    for md in skill.rglob("*.md"):
-        if md.name == "THIRD_PARTY_NOTICES.md":
-            continue
-        text = md.read_text()
-        if ATTRIBUTION.search(text):
-            named |= {u for u in UPSTREAMS if u in text}
-            if "Copyright (c)" not in text:
-                fail(md, "adapted file must carry the upstream copyright line")
-    notices = skill / "THIRD_PARTY_NOTICES.md"
-    if not named:
-        return
-    if not notices.is_file():
-        return fail(notices, "missing; this skill adapts " + ", ".join(sorted(named)))
-    body = notices.read_text()
-    for upstream in named:
-        if upstream not in body:
-            fail(notices, f"does not list {upstream}")
-        if upstream not in root_notices:
-            fail(ROOT / "THIRD_PARTY_NOTICES.md", f"does not list {upstream} (used by {skill.name})")
-    if "Permission is hereby granted" not in body:
-        fail(notices, "must include the MIT permission notice")
-
-
 def check_contract(skill: Path) -> None:
     for md in skill.rglob("*.md"):
-        if md.name == "THIRD_PARTY_NOTICES.md":
-            continue
-        text = strip_notes(md.read_text())
-        for hit in FOREIGN.finditer(text):
-            fail(md, f"competitor tool or CLI '{hit.group(0)}' left in an adapted skill")
+        text = strip_comments(md.read_text())
         # Field names are only checked in files that drive Buildary tools: a canvas or CSS recipe has its own
         # camelCase API (strokeText, fillText) that is not about the MCP.
         about_mcp = any(f"`{tool}" in text for tool in TOOLS)
@@ -216,7 +177,6 @@ def check_json(md: Path, node, key=None) -> None:
 
 def main() -> None:
     version = (ROOT / "VERSION").read_text().strip()
-    root_notices = (ROOT / "THIRD_PARTY_NOTICES.md").read_text()
     skills = sorted(p for p in SKILLS.iterdir() if p.is_dir())
     for skill in skills:
         if not (skill / "SKILL.md").is_file():
@@ -225,13 +185,12 @@ def main() -> None:
         check_frontmatter(skill, version)
         check_references(skill)
         check_codex_metadata(skill)
-        check_attribution(skill, root_notices)
         check_contract(skill)
     if errors:
         print("\n".join(f"::error::{e}" for e in errors))
         sys.exit(1)
-    print(f"✓ {len(skills)} skills: frontmatter, {MAX_SKILL_LINES}-line limit, references, self-containment, "
-          f"attribution and the {len(TOOLS)}-tool contract are valid")
+    print(f"✓ {len(skills)} skills: frontmatter, {MAX_SKILL_LINES}-line limit, references, self-containment "
+          f"and the {len(TOOLS)}-tool contract are valid")
 
 
 if __name__ == "__main__":

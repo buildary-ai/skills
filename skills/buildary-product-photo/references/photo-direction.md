@@ -1,10 +1,5 @@
 # Photo direction for styled product images
 
-Condensed and adapted from krea-ai/skills `krea-marketing/references/product-photography.md` (commit
-9239bb4), MIT License, Copyright (c) 2026 Krea AI. Changes: shortened; the product comes from the owner's
-photo instead of an invented one; catalog and marketplace modes are exempt. See `THIRD_PARTY_NOTICES.md` in
-this skill.
-
 Use for the modes without a workflow: `hero_banner`, `ad_creative`, `social_carousel` and styled
 `closeup_with_person` or `restyle`. Workflow modes get their photography from the server.
 `marketplace_main` and plain catalog shots keep their own rules in `mode-recipes.md`.

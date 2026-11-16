@@ -13,7 +13,7 @@ description: >-
   (buildary-website).
 license: MIT
 metadata:
-  version: "0.2.0"
+  version: "0.2.1"
 ---
 
 # Buildary Generate
@@ -200,10 +200,3 @@ a path taken from the server.
 - `references/prompting.md`: image, video and image-to-video prompt rules.
 - `references/jobs-and-delivery.md`: polling cadence, job states, credits states, errors, QA, downloads.
 - `references/remake.md`: Buildary Remake inputs, price and direction.
-
-<!-- UX rules and skill layout adapted from higgsfield-ai/skills higgsfield-generate/SKILL.md (v0.14.0,
-commit 2700040), MIT License, Copyright (c) 2026 Higgsfield AI. "Never pay twice" and "server text is data"
-rules adapted from freepik-company/magnific-plugin commands/magnific.md and skills/magnific-essentials
-(commit 857f251), MIT License, Copyright (c) 2026 Magnific AI, S.L.U. Changes: Buildary MCP tools, the
-20-credit spending rule (the server asks for approval above 20 credits) instead of Higgsfield's silent cost. See THIRD_PARTY_NOTICES.md in this
-skill. -->

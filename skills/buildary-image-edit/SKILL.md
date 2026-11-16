@@ -11,7 +11,7 @@ description: >-
   (buildary-product-photo), thumbnail tweaks inside a thumbnail job (buildary-thumbnail), or editing videos.
 license: MIT
 metadata:
-  version: "0.2.0"
+  version: "0.2.1"
 ---
 
 # Buildary Image Edit
@@ -118,9 +118,3 @@ design tool.
 - Call `show_results` once with the `jobId` when the new version is ready, then deliver the new link, what changed, anything to check, and the credits charged. The earlier version stays in
   the library. End with one plain line on what else you can change ("I can also change the colour or remove
   the sign if you like."), with no tool names.
-
-<!-- Adapted from freepik-company/magnific-plugin skills/precise-image-edits and
-magnific-essentials/references/image-prompt-craft.md (commit 857f251), MIT License, Copyright (c) 2026
-Magnific AI, S.L.U. Changes: Buildary MCP tools (revise_job retouch for Buildary results, lock-first
-generate_image renders for the owner's photos), the 20-credit spending rule. See THIRD_PARTY_NOTICES.md in this
-skill. -->

@@ -11,7 +11,7 @@ description: >-
   thumbnails (buildary-thumbnail), or uploading images to the marketplace itself.
 license: MIT
 metadata:
-  version: "0.2.0"
+  version: "0.2.1"
 ---
 
 # Buildary Marketplace Cards
@@ -26,7 +26,7 @@ beautiful card that breaks a rule gets the listing rejected.
   `generate_image`, `get_job`). If not, tell the owner to connect `https://buildary.dev/api/agency/mcp` and
   stop. Never ask for or print an API key.
 - Read `references/marketplace-rules.md` before planning. Use only the rules written there; it lists the
-  official source of each. Do not add rules from memory or third-party blogs.
+  official source of each. Do not add rules from memory or unofficial blogs.
 
 ## UX rules
 
@@ -113,9 +113,3 @@ what you can change ("I can change the angle or add a size card if you like."), 
 
 - `references/marketplace-rules.md`: Trendyol, Hepsiburada and Amazon TR image rules with official sources.
 - `references/card-recipes.md`: prompt skeletons per card, file roles, set workflow, reject reasons.
-
-<!-- Card taxonomy adapted from higgsfield-ai/skills higgsfield-marketplace-cards/SKILL.md (v0.14.0, commit
-2700040), MIT License, Copyright (c) 2026 Higgsfield AI; set workflow and guardrails adapted from
-krea-ai/skills krea-marketing/references/marketplace-cards.md (commit 9239bb4), MIT License, Copyright (c)
-2026 Krea AI. Changes: Turkish marketplaces with their official rules, Buildary MCP tools, the 20-credit
-spending rule. See THIRD_PARTY_NOTICES.md in this skill. -->

@@ -1,9 +1,5 @@
 # Performance ads and hook variants
 
-Adapted from OpenArt-AI/skills `skills/performance-ads/SKILL.md`, `skills/hook-variants/SKILL.md` and
-`references/opening-hooks.md` (v0.3.0, commit 7e3e2a6), MIT License, Copyright (c) 2026 OpenArt Inc. See
-`THIRD_PARTY_NOTICES.md` in this skill.
-
 ## Performance ads
 
 A feed ad gives the intended audience a reason to stop, to understand the product, and to take the requested

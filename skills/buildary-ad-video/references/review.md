@@ -1,9 +1,5 @@
 # Review and delivery
 
-Adapted from OpenArt-AI/skills `skills/tvc/references/review-and-delivery.md` and
-`continuity-and-variants.md` (v0.3.0, commit 7e3e2a6), MIT License, Copyright (c) 2026 OpenArt Inc. See
-`THIRD_PARTY_NOTICES.md` in this skill.
-
 ## Look at the actual video
 
 In a coding agent, download the output and look at frames spaced across it (for example every 2 seconds with

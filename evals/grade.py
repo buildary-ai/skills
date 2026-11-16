@@ -29,8 +29,7 @@ allows (`question_turns`; by default the price or agreement turn of an over_thre
 otherwise none). A question in any other turn, a second question in one turn, or any question about the brand
 fails the case.
 A question is a sentence ending in "?". Other wording (the reply in Turkish, the one-line change summary, the
-closing offer) is in each case's required_facts for a human or LLM reviewer. Case format and the spend-gate
-idea are adapted from krea-ai/skills evals/hero (MIT; see THIRD_PARTY_NOTICES.md).
+closing offer) is in each case's required_facts for a human or LLM reviewer.
 """
 import json
 import re

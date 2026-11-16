@@ -11,7 +11,7 @@
       "name": "buildary",
       "source": "./",
       "description": "Make images, videos, ads and websites with Buildary from your agent: product photos, thumbnails, marketplace listing images, ads from a product link, UGC and product ads, image edits, Remakes, and websites built, changed and published on your request. Jobs over 20 credits wait for your approval of the price; website work starts only after you agree. Connects the Buildary MCP; sign in with your Buildary account.",
-      "version": "0.2.0",
+      "version": "0.2.1",
       "category": "design",
       "tags": [
         "buildary",

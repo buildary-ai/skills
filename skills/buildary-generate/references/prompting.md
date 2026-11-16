@@ -1,9 +1,5 @@
 # Prompting
 
-Portions adapted from higgsfield-ai/skills (`higgsfield-generate/references/prompt-engineering.md`, MIT,
-Copyright (c) 2026 Higgsfield AI) and freepik-company/magnific-plugin (`magnific-essentials` prompt craft,
-MIT, Copyright (c) 2026 Magnific AI, S.L.U.). See `THIRD_PARTY_NOTICES.md` in this skill.
-
 ## General
 
 - Concrete and sensory beats adjectives: subject, setting, light, camera, style. One precise detail beats

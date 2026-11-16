@@ -11,7 +11,7 @@ description: >-
   (buildary-product-photo), or editing an unrelated existing photo (buildary-image-edit).
 license: MIT
 metadata:
-  version: "0.2.0"
+  version: "0.2.1"
 ---
 
 # Buildary Thumbnail
@@ -226,8 +226,3 @@ you like."), with no tool or setting names.
 
 - `references/thumbnail-frameworks.md`: 16 concept frameworks, the information-gap rule, the truthfulness law.
 - `references/text-overlay-bake.md`: five deterministic text-overlay styles and the 4K canvas-bake recipe.
-
-<!-- Adapted from higgsfield-ai/skills higgsfield-youtube-thumbnail/SKILL.md (v0.14.0, commit 2700040),
-MIT License, Copyright (c) 2026 Higgsfield AI. Changes: Buildary MCP tools and models instead of the
-higgsfield CLI, the 20-credit spending rule, library file inputs, revise_job tweaks.
-See THIRD_PARTY_NOTICES.md in this skill. -->

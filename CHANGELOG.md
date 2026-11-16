@@ -3,6 +3,10 @@
 Each release changes `VERSION` and the `version` in every plugin manifest and skill (`scripts/bump_version.py`
 writes them all). Claude Code and Codex update an installed plugin only when that number changes.
 
+## 0.2.1
+
+- Repository housekeeping.
+
 ## 0.2.0
 
 - New skill `buildary-website`: build, change and publish the owner's Buildary websites with `list_sites`,

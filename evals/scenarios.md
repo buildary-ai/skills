@@ -1,9 +1,8 @@
 # Scenarios
 
 Each scenario is one user request, what the agent should do, and how to score it. Run each in a fresh session
-with the plugin installed and a review account connected. Format adapted from higgsfield-ai/skills
-`evals/scenarios.md` (MIT, Copyright (c) 2026 Higgsfield AI; see `THIRD_PARTY_NOTICES.md`). Scenarios marked
-with a case id also have a machine-checked spec in `cases/`.
+with the plugin installed and a review account connected. Scenarios marked with a case id also have a
+machine-checked spec in `cases/`.
 
 The price rule under test: a single job starts directly without `quote` or `quotedCredits`; the server starts
 it at or under 20 credits and answers a larger one with `quote_required` and its price, which the owner

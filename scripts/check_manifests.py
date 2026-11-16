@@ -3,8 +3,7 @@
 
 Claude Code, Codex, Cursor and Agent Plugins hosts install the same files, and each updates an installed plugin
 only when its own manifest's version changes, so name, version and description must match everywhere, and every
-MCP config must point at the same server. Adapted from eachlabs/plugin scripts/check-manifests.mjs and
-OpenArt-AI/skills .github/scripts/check-manifests.mjs (both MIT; see THIRD_PARTY_NOTICES.md).
+MCP config must point at the same server.
 """
 import json
 import sys
@@ -72,7 +71,7 @@ def main() -> None:
         exists(".cursor-plugin/plugin.json", cursor[field], field)
     exists(".claude-plugin/plugin.json", claude["icon"], "icon")
 
-    # claude.ai refuses a plugin whose repository root has a bin/ directory (OpenArt-AI/skills check-manifests).
+    # claude.ai refuses a plugin whose repository root has a bin/ directory.
     expect(not (ROOT / "bin").exists(), "bin/ at the repository root makes claude.ai refuse the plugin")
 
     if errors:

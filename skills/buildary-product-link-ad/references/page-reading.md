@@ -1,9 +1,5 @@
 # Reading a product page
 
-Adapted from OpenArt-AI/skills `skills/ugc/references/product-understanding.md` ("Read product links as
-evidence and asset sources", v0.3.0, commit 7e3e2a6), MIT License, Copyright (c) 2026 OpenArt Inc. See
-`THIRD_PARTY_NOTICES.md` in this skill.
-
 ## What to read
 
 Use your available web tools before asking the owner to retype what the page says. Identify:

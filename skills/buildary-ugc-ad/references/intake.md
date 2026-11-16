@@ -1,9 +1,5 @@
 # Intake for everyday creator videos
 
-Adapted from OpenArt-AI/skills `skills/ugc/references/intake.md`, `product-and-claims.md` and
-`creative-preflight.md` (v0.3.0, commit 7e3e2a6), MIT License, Copyright (c) 2026 OpenArt Inc. See
-`THIRD_PARTY_NOTICES.md` in this skill.
-
 Read existing material and decisions; decide instead of asking. Identify: new creation, approved-script execution,
 reference adaptation, correction of a result, variations, or a prompt-only/analysis request.
 

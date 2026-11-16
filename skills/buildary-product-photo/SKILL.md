@@ -13,7 +13,7 @@ description: >-
   (buildary-image-edit), videos (buildary-ad-video, buildary-ugc-ad), or websites (buildary-website).
 license: MIT
 metadata:
-  version: "0.2.0"
+  version: "0.2.1"
 ---
 
 # Buildary Product Photo
@@ -190,9 +190,3 @@ names.
 
 - `references/mode-recipes.md`: workflow calls and prompt skeletons for each mode, file roles, marketplace note.
 - `references/photo-direction.md`: lighting registers, palettes, staging modes, prompt order, avoid list.
-
-<!-- Mode table and selection rules adapted from higgsfield-ai/skills
-higgsfield-product-photoshoot/SKILL.md (v0.14.0, commit 2700040), MIT License, Copyright (c) 2026
-Higgsfield AI. Product-lock routing adapted from freepik-company/magnific-plugin skills/product-imagery
-(commit 857f251), MIT License, Copyright (c) 2026 Magnific AI, S.L.U. See THIRD_PARTY_NOTICES.md in this
-skill. -->

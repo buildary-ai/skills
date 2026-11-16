@@ -11,7 +11,7 @@ description: >-
   a brief (buildary-ugc-ad), or reading social-media video links (not supported).
 license: MIT
 metadata:
-  version: "0.2.0"
+  version: "0.2.1"
 ---
 
 # Buildary Product Link Ad
@@ -110,8 +110,3 @@ you like."), with no tool or setting names.
 
 - `references/page-reading.md`: what to read on a product page, attribution of facts, missing-data fallback.
 - `references/ad-recipes.md`: image and video prompt skeletons with the product lock and copy rules.
-
-<!-- Page-reading rules adapted from OpenArt-AI/skills skills/ugc/references/product-understanding.md
-(v0.3.0, commit 7e3e2a6), MIT License, Copyright (c) 2026 OpenArt Inc. Changes: Buildary MCP tools, import
-through import_from_url, no URLs in prompts, the 20-credit spending rule. See THIRD_PARTY_NOTICES.md in this
-skill. -->

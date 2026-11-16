@@ -13,7 +13,7 @@ description: >-
   questions (the owner does those in Buildary).
 license: MIT
 metadata:
-  version: "0.2.0"
+  version: "0.2.1"
 ---
 
 # Buildary Website

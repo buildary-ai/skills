@@ -1,9 +1,5 @@
 # Mode recipes
 
-Lifestyle and packaging prompt shapes adapted from freepik-company/magnific-plugin `skills/product-imagery`
-and `magnific-essentials/references/image-prompt-craft.md` (commit 857f251), MIT License, Copyright (c)
-2026 Magnific AI, S.L.U. See `THIRD_PARTY_NOTICES.md` in this skill.
-
 Fill the `[slots]` from the request and the defaults in SKILL.md. Write prompts in English; keep `exactText` in the owner's language.
 
 ## Clauses used everywhere

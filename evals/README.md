@@ -6,8 +6,7 @@ only `skills/`).
 Skill behaviour is defined in plain Markdown, and plain Markdown drifts. These evals catch regressions after a
 `SKILL.md` edit, after a Buildary server change, and before a "Key Decision" goes into `.claude/CLAUDE.md`.
 
-Two layers, adapted from higgsfield-ai/skills (`evals/scenarios.md`, hand-scored) and krea-ai/skills
-(`evals/hero`, machine-checked cases), both MIT; see `THIRD_PARTY_NOTICES.md`:
+Two layers:
 
 | File | What | Run by |
 |---|---|---|

@@ -5,8 +5,7 @@
 
 The next version is the latest vX.Y.Z git tag raised by the given part; with no tag yet, the VERSION file is the
 base. While the top CHANGELOG entry is newer than that base it is still unreleased, so a second run renumbers it
-instead of adding another entry. Prints the version it wrote. Adapted from eachlabs/plugin
-scripts/bump-version.sh (MIT; see THIRD_PARTY_NOTICES.md).
+instead of adding another entry. Prints the version it wrote.
 """
 import json
 import re

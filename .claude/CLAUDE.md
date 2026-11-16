@@ -1,9 +1,8 @@
 # CLAUDE.md: Buildary skills
 
-Maintainer contract for this repository. Adapted from higgsfield-ai/skills `CLAUDE.md` (v0.14.0, MIT,
-Copyright (c) 2026 Higgsfield AI; see `THIRD_PARTY_NOTICES.md`). It lives in `.claude/` because a `CLAUDE.md` at
-the plugin root fails `claude plugin validate --strict` (hosts never load it as context); Claude Code still reads it
-here when you work in this repository.
+Maintainer contract for this repository. It lives in `.claude/` because a `CLAUDE.md` at the plugin root fails
+`claude plugin validate --strict` (hosts never load it as context); Claude Code still reads it here when you work
+in this repository.
 
 ## What this is
 
@@ -112,18 +111,6 @@ and shared rules are copied, not linked. Drift between copies is acceptable as l
 consistent. Skills chain only through return values the owner can see: an output `fileId` or link from one
 skill becomes an input of the next.
 
-## Attribution
-
-Material copied or adapted from another project keeps its notice:
-
-- the adapted file names the source repository, version or commit, licence and copyright in a note at its top
-  (references) or in an HTML comment at its bottom (`SKILL.md`);
-- the skill's own `THIRD_PARTY_NOTICES.md` lists those sources with the full licence text;
-- the root `THIRD_PARTY_NOTICES.md` lists every source with what was adapted and where.
-
-Only MIT or Apache-2.0 material may be copied. Kling, Luma and eachlabs/skills are learn-only (no licence).
-CI checks that every adapted file carries a copyright line and that both notices list its source.
-
 ## Versions
 
 `VERSION` is the source of truth. It must match every plugin manifest, the Claude marketplace entry and each
@@ -145,9 +132,8 @@ npx skills add . --list
 
 ## Adding a skill
 
-New folder `skills/buildary-<name>/` with `SKILL.md`, `agents/openai.yaml`, `references/` as needed and
-`THIRD_PARTY_NOTICES.md` if anything is adapted. Add it to the README tables (English and Turkish), add at least
-one eval case, run the checks.
+New folder `skills/buildary-<name>/` with `SKILL.md`, `agents/openai.yaml` and `references/` as needed. Add it to
+the README tables (English and Turkish), add at least one eval case, run the checks.
 
 ## Eval discipline
 

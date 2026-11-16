@@ -1,9 +1,5 @@
 # Thumbnail frameworks — the concept layer
 
-Adapted from higgsfield-ai/skills `higgsfield-youtube-thumbnail/references/thumbnail-frameworks.md`
-(v0.14.0, commit 2700040), MIT License, Copyright (c) 2026 Higgsfield AI. Changes: rows 1, 3 and 11 point
-at this skill's split layout and product reference. See `THIRD_PARTY_NOTICES.md` in this skill.
-
 This is the "what to depict" layer; the SKILL.md house prompt structure is "how to render it".
 Load this at the Concept gate, pick the framework(s), then assemble the house prompt.
 

@@ -1,10 +1,5 @@
 # Plan, prompt and price
 
-Adapted from OpenArt-AI/skills `skills/ugc/references/sequence-and-prompts.md`, `video-experience.md` and
-`generation-approval.md` (v0.3.0, commit 7e3e2a6), MIT License, Copyright (c) 2026 OpenArt Inc. Changes:
-Buildary's 20-credit spending rule replaces OpenArt's draft/upgrade flow. See `THIRD_PARTY_NOTICES.md` in
-this skill.
-
 ## Write the prompt and the Script Plan as one version
 
 Write the full model prompt and derive the readable plan from it, so both are one version. The plan is not

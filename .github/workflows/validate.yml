@@ -1,5 +1,3 @@
-# Adapted from higgsfield-ai/skills .github/workflows/validate-skills.yml and OpenArt-AI/skills
-# .github/workflows/validate.yml (both MIT; see THIRD_PARTY_NOTICES.md).
 name: Validate
 
 on:
@@ -25,7 +23,7 @@ jobs:
       - name: Install Python validators
         run: pip install --quiet pyyaml==6.0.2 skills-ref==0.1.1
 
-      - name: Skills (frontmatter, line limit, references, attribution, tool contract)
+      - name: Skills (frontmatter, line limit, references, tool contract)
         run: python3 scripts/check_skills.py
 
       - name: Agent Skills reference validator

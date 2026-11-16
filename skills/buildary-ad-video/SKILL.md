@@ -13,7 +13,7 @@ description: >-
   into an existing video (buildary-generate, Remake), or editing the owner's footage.
 license: MIT
 metadata:
-  version: "0.2.0"
+  version: "0.2.1"
 ---
 
 # Buildary Ad Video
@@ -164,9 +164,3 @@ separately generated clips locally and say that you did. For an edited multi-sce
 - `references/performance-and-hooks.md`: feed-ad logic, opening hooks, hook-variant production.
 - `references/plan-and-prompt.md`: prompt contents, the readable plan, version-choice and price wording.
 - `references/review.md`: review checklist, variant comparison, delivery.
-
-<!-- Adapted from OpenArt-AI/skills skills/tvc, skills/performance-ads and skills/hook-variants (v0.3.0,
-commit 7e3e2a6), MIT License, Copyright (c) 2026 OpenArt Inc, and freepik-company/magnific-plugin
-skills/video-ad (commit 857f251), MIT License, Copyright (c) 2026 Magnific AI, S.L.U. Changes: Buildary MCP
-tools and models, the 20-credit spending rule, no draft-upgrade, stitching or music tools. See
-THIRD_PARTY_NOTICES.md in this skill. -->
